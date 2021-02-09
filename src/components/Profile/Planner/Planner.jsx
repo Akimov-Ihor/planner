@@ -4,7 +4,7 @@ const Planner = () =>{
    return (
       <>
          <span>Hello I'm planner</span>
-         Planner
+        
       </>
    )
 }

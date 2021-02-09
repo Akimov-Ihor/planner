@@ -1,31 +1,38 @@
 import React from 'react'
-import {NavLink ,Route,Switch,BrowserRouter} from 'react-router-dom'
-import About from './About/About'
+import { NavLink, Route, Switch, BrowserRouter, } from 'react-router-dom'
+import Main from './Main/Main'
 import Planner from './Planner/Planner'
-import Home from './Home/Home'
+import './Profile.css'
+
+
+
+
 
 const Profile = () => {
    return (
-      <BrowserRouter>
-         <nav>
-            <div>
-               <NavLink  to="/home">Home</NavLink>
-            </div>
-            <div>
-               <NavLink  to="/about">About</NavLink>
-            </div>
-            <div>
-               <NavLink  to="/planner">Planner</NavLink>
-            </div>
-         </nav>
-         <div>Profile</div>
+      <div>
+         <BrowserRouter>
+            <nav>
+               <ul>
+                  <li>
+                     <NavLink to="/main">Main</NavLink>
+                  </li>
+                  <li>
+                     <NavLink to="/planner">Planner</NavLink>
+                  </li>
+                  <li>
+                     <NavLink to='/login'>Logout</NavLink>
+                  </li>
+               </ul>
 
-         <Switch>
-          <Route  path="/home"  render={() => <Home />}/>
-          <Route  path="/about" render={() => <About />}/>
-          <Route  path="/planner"render={() => <Planner />}/>
-        </Switch>
-      </BrowserRouter>
+            </nav>
+            <Switch>
+               <Route path="/main" render={() => <Main />} />
+               <Route path="/planner" render={() => <Planner />} />
+            </Switch>
+         </BrowserRouter>
+      </div>
+
 
    )
 }
