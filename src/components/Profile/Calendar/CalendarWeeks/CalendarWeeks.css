@@ -1,0 +1,10 @@
+.calendar-weekday-indicators{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(7, 81px);
+}
+.weekday-indicator-day {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+}

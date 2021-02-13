@@ -1,15 +1,16 @@
 import React from 'react'
+import './CalendarWeeks.css'
+import {weekdays} from '../../../utils/data'
 
 
 const CalendarWeeks = () => {
-  const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   return (
-    <div className="bae-weekday-indicators">
+    <div className="calendar-weekday-indicators">
       {
         weekdays.map((day, key) => {
           return (
-            <div className="weekday-indicator-icon" key={key}>
+            <div className="weekday-indicator-day" key={key}>
               {day}
             </div>
           );

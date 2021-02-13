@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React  from 'react'
 import {
   getReadableMonthDate,
   getReadableWeekday,
@@ -9,12 +9,9 @@ import './CalendarHeader'
 const CalendarHeader = ({ selectDate }) => {
   return (
     <div className='header-calendar-container'>
-      <div className="left-container">
+      <div className="header-calendar-title">
         <h1>{getReadableWeekday(selectDate)}</h1>
-        <h1>{getReadableMonthDate(selectDate)}</h1>
-      </div>
-      <div className="right-container">
-        <h3>{getYear(selectDate)}</h3>
+        <h1>{getReadableMonthDate(selectDate)} {getYear(selectDate)}</h1>
       </div>
     </div>
   )

@@ -1,0 +1,10 @@
+.calendar-date{
+  display: grid;
+  grid-template-columns: repeat(7, 81px);
+  justify-content: center;
+  
+}
+.calendar-date-indicator {
+ display: flex;
+ justify-content: center;
+}

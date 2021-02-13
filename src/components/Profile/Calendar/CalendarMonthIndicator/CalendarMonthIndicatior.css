@@ -1,0 +1,4 @@
+.callendar-month-indicator{
+  display: flex;
+  justify-content: space-evenly
+}
