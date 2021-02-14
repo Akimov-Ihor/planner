@@ -1,18 +1,32 @@
 .calendar-date{
   display: grid;
-  grid-template-columns: repeat(7, 81px);
+  grid-template-columns: repeat(7, 129px);
   justify-content: center;
-  
+  grid-auto-rows: minmax(87px, 100px);
 }
 .calendar-date-indicator {
  display: flex;
- justify-content: center;
  border: solid black;
 }
-
+.calendar-date-indicator-current{
+  font-size: 50px;
+  cursor: pointer;
+  width: 50%;
+}
+.calendar-date-indicator-plans ul{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.сhoosenDay{
+  border: solid rgb(80, 80, 197);
+}
 .non-active {
   color: rgba(0, 0, 0, 0.3)
 }
 .active {
-  color: #000000
+  color: #1b2922
 }

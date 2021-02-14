@@ -10,7 +10,9 @@ export const getMonth = (date) => moment(date).month();
 
 export const getYear = (date) => moment(date).year();
 
-export const getToday = () => moment().toDate();
+export const getToday = () => moment().toDate() ;
+
+export const getTodaySecFormat = (date) =>moment().valueOf(date) 
 
 export const getReadableWeekday = (date) => moment(date).format('dddd');
 

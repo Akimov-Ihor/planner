@@ -1,5 +1,5 @@
 import React,{ useState } from 'react'
-import moment from 'moment'
+import {getToday} from '../../utils/date-moment'
 import CalendarHeader from './CalendarHeader/CalendarHeader'
 import CalendarWeeks from './CalendarWeeks/CalendarsWeeks.jsx'
 import CalendarDataInicatior from './CalendarDateIndicator/CalendarDateIndicator'
@@ -7,7 +7,7 @@ import CalendarMonthIndicator from './CalendarMonthIndicator/CalendarMonthIndica
 
 const Calendar = () => {
   const [selectDate, setSelectDate] =
-    useState(moment().toDate());
+    useState(getToday());
 
   return (
     <div className="bae-calendar-container">

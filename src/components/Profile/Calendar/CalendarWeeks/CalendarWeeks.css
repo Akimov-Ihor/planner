@@ -1,7 +1,8 @@
 .calendar-weekday-indicators{
     display: grid;
     justify-content: center;
-    grid-template-columns: repeat(7, 81px);
+    grid-template-columns: repeat(7, 130px);
+    
 }
 .weekday-indicator-day {
   display: flex;
