@@ -1,0 +1,20 @@
+.modal-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 114vh;
+  width: 100%;
+  background: #09040461;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.modal-container > div {
+  display: grid;
+  
+  grid-template-rows: repeat(4, 65px);
+  background: #020202ab;
+  color: #e8f0fe;
+ 
+}

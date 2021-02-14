@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {
   getDayOfMonth,
   getToday,
@@ -6,25 +6,31 @@ import {
   getYear,
   getTodaySecFormat
 } from '../../../utils/date-moment';
-import moment from 'moment'
+
+
 import { getDatesInMonthDisplay } from '../../../utils/date-utils';
 import './CalendarDateIndicator.css'
 
 
-const CalendarDateIndicator = ({ activeDates, selectDate, setSelectDate }) => {
+const CalendarDateIndicator = ({ selectDate, setSelectDate, setIsOpen, isOpen, modalDate, }) => {
 
   const changeDate = (e) => {
     console.log(e.target)
     setSelectDate(e.target.getAttribute('data-date'))
+    openCloseModal(e.target.getAttribute('data-date'))
   };
 
   const datesInMonth = getDatesInMonthDisplay(
     getMonth(selectDate) + 1,
     getYear(selectDate)
   );
-  console.log(selectDate)
 
-  
+  const openCloseModal = (date) => {
+    setSelectDate(date)
+    setIsOpen(!isOpen)
+  }
+  const [isPlansOpen , setIsPlansOpen] = useState (false)
+
   return (<div className="calendar-date">
     {
       datesInMonth.map((i, key) => {
@@ -33,7 +39,7 @@ const CalendarDateIndicator = ({ activeDates, selectDate, setSelectDate }) => {
             key={`${key + i.date + i.currentMonth}`}
             className={
               `calendar-date-indicator ${i.currentMonth ? 'active' : 'non-active'} 
-              ${i.date.toString() === selectDate.toString() ? 'сhoosenDay' : 'others'} `
+              ${i.date.toString() === selectDate ? 'сhoosenDay' : 'others'} `
             }
           >
             <div
@@ -45,10 +51,19 @@ const CalendarDateIndicator = ({ activeDates, selectDate, setSelectDate }) => {
             >
               {getDayOfMonth(i.date)}
             </div>
-            <div className='calendar-date-indicator-plans' key={`${key + i.date} `}>
+            <div
+              className='calendar-date-indicator-plans' key={`${key + i.date} `}
+              onClick={() => openCloseModal(i.date)}
+            >
               <ul >
                 {
-                  i.date.toString() === selectDate.toString()  ? 'today' : 'other'
+                  modalDate.length && modalDate.map((obj, idx) => {
+                    return (
+                      obj.date.toString() == i.date.toString() ? <li key={idx}>{obj.title}</li> : null
+                    )
+
+                  })
+
 
                 }
 
