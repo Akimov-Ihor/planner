@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import {
   getDayOfMonth,
   getToday,
@@ -12,10 +12,10 @@ import { getDatesInMonthDisplay } from '../../../utils/date-utils';
 import './CalendarDateIndicator.css'
 
 
-const CalendarDateIndicator = ({ selectDate, setSelectDate, setIsOpen, isOpen, modalDate, }) => {
+const CalendarDateIndicator = ({ selectDate, setSelectDate, setIsOpen, isOpen, modalDate, isPlansOpen, setIsPlansOpen, setCurrentPlans }) => {
 
   const changeDate = (e) => {
-    console.log(e.target)
+
     setSelectDate(e.target.getAttribute('data-date'))
     openCloseModal(e.target.getAttribute('data-date'))
   };
@@ -29,7 +29,11 @@ const CalendarDateIndicator = ({ selectDate, setSelectDate, setIsOpen, isOpen, m
     setSelectDate(date)
     setIsOpen(!isOpen)
   }
-  const [isPlansOpen , setIsPlansOpen] = useState (false)
+  const openPlans = (data) => {
+    console.log(data)
+    setCurrentPlans(data)
+    setIsPlansOpen(!isPlansOpen)
+  }
 
   return (<div className="calendar-date">
     {
@@ -52,28 +56,29 @@ const CalendarDateIndicator = ({ selectDate, setSelectDate, setIsOpen, isOpen, m
               {getDayOfMonth(i.date)}
             </div>
             <div
-              className='calendar-date-indicator-plans' key={`${key + i.date} `}
-              onClick={() => openCloseModal(i.date)}
+              className='calendar-date-indicator-plans'
+              key={`${key + i.date} `}
+
             >
               <ul >
                 {
                   modalDate.length && modalDate.map((obj, idx) => {
                     return (
-                      obj.date.toString() == i.date.toString() ? <li key={idx}>{obj.title}</li> : null
+                      obj.date.toString() === i.date.toString()
+                        ? <li
+                          onClick={() => openPlans(obj)}
+                          key={idx}>{obj.title}
+                        </li>
+                        : null
                     )
 
                   })
-
-
                 }
-
               </ul>
-
             </div>
           </div>
         )
-      }
-      )
+      })
     }
   </div>
   );

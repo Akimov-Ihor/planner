@@ -16,10 +16,15 @@
 .calendar-date-indicator-plans ul{
   margin: 0;
   padding: 0;
+  width: 90%;
   height: 100%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+.calendar-date-indicator ul > li {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .сhoosenDay{
   border: solid rgb(80, 80, 197);

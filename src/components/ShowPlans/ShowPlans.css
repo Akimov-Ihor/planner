@@ -1,4 +1,4 @@
-.show-plans-container {
+.show-plans-wrapper{
   position: absolute;
   top: 0;
   left: 0;
@@ -10,11 +10,29 @@
   flex-direction: column;
   align-items: center;
 }
+.show-plans-container  {
+  height: 15%;
+  width: 35%;
+  background: #020202ab;
+  color: #e8f0fe
+}
+.show-plans-container span{
+  color:#d5d0ffc4;
+  margin-right: 2%;
+  font-weight: bold;
+  font-size: 20px;
+}
 .show-plans-container > div {
-  display: grid;
-  
-  grid-template-rows: repeat(4, 65px);
-  /* background: #020202ab; */
-  color: #e8f0fe;
- 
+  /* margin-top: 2%; */
+  padding-left: 2%;
+  font-size: 15px;
+  text-overflow: ellipsis;
+}
+.show-plans-container-description{
+  height: 55%;
+  overflow: auto;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  margin-bottom: 0%;
+
 }

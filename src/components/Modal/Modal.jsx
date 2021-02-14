@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import { Input, TextArea, Form, Button, Icon } from 'semantic-ui-react'
 import './Modal.css'
 
-const Modal = ({ isOpen, setIsOpen, setModalDate,selectDate }) => {
+const Modal = ({ isOpen, setIsOpen, setModalDate, selectDate }) => {
   const openCloseModal = () => setIsOpen(!isOpen)
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
- 
+
 
   const sentData = () => {
     setModalDate({
       title,
       description,
-      date:selectDate.toString()
+      date: selectDate.toString()
     })
     setTitle('')
-    setDescription('') 
+    setDescription('')
     openCloseModal()
   }
   console.log(selectDate)
@@ -27,7 +27,14 @@ const Modal = ({ isOpen, setIsOpen, setModalDate,selectDate }) => {
 
           <div>
             <Form>
-              <div>
+              <div className='modal-title-close'>
+                <Input
+                  icon='users'
+                  iconPosition='left'
+                  placeholder='Title'
+                  onChange={e => setTitle(() => e.target.value)} value={title}
+                />
+
                 <Button animated='vertical' onClick={() => openCloseModal()}>
                   <Button.Content hidden>Close</Button.Content>
                   <Button.Content visible>
@@ -35,20 +42,13 @@ const Modal = ({ isOpen, setIsOpen, setModalDate,selectDate }) => {
                   </Button.Content>
                 </Button>
               </div>
-              <div>
-                <Input
-                  icon='users'
-                  iconPosition='left'
-                  placeholder='Title'
-                  onChange={e => setTitle(() => e.target.value)} value={title} />
-              </div>
-              <div >
+              <div className='modal-textarea' >
                 <TextArea
                   placeholder='Tell us more'
                   onChange={e => setDescription(() => e.target.value)}
                   value={description} />
               </div>
-              <div>
+              <div className='modal-button'>
                 <Button animated='vertical' onClick={() => sentData()}>
                   <Button.Content hidden>Add</Button.Content>
                   <Button.Content visible>
