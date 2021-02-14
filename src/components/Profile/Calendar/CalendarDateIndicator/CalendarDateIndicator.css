@@ -7,4 +7,12 @@
 .calendar-date-indicator {
  display: flex;
  justify-content: center;
+ border: solid black;
+}
+
+.non-active {
+  color: rgba(0, 0, 0, 0.3)
+}
+.active {
+  color: #000000
 }
