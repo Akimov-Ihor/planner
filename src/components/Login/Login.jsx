@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Button, Form, Header, Segment,
@@ -27,10 +27,6 @@ export const Login = () => {
     setLogin('');
     setPassword('');
   };
-  if (isAuth) {
-    <Redirect push to="/main" />;
-  }
-
   return (
     <div className="login-wrapper">
       <div className="login-container">
