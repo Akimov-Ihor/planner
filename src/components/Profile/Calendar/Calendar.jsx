@@ -1,28 +1,28 @@
-import React, { useState } from 'react'
-import { getToday } from '../../utils/date-moment'
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { getToday } from '../../utils/date-moment';
 
-import CalendarHeader from './CalendarHeader/CalendarHeader'
-import CalendarWeeks from './CalendarWeeks/CalendarsWeeks.jsx'
-import CalendarDataInicatior from './CalendarDateIndicator/CalendarDateIndicator'
-import CalendarMonthIndicator from './CalendarMonthIndicator/CalendarMonthIndicator';
+import { CalendarHeader } from './CalendarHeader/CalendarHeader.jsx';
+import { CalendarWeeks } from './CalendarWeeks/CalendarsWeeks.jsx';
+import { CalendarDateIndicator } from './CalendarDateIndicator/CalendarDateIndicator.jsx';
+import { CalendarMonthIndicator } from './CalendarMonthIndicator/CalendarMonthIndicator.jsx';
 
-import Modal from '../../Modal/Modal.jsx'
-import ShowPlans from '../../ShowPlans/ShowPlans'
-import { useSelector } from 'react-redux'
+import { Modal } from '../../Modal/Modal.jsx';
+import { ShowPlans } from '../../ShowPlans/ShowPlans.jsx';
 
-const Calendar = () => {
+export const Calendar = () => {
   const [selectDate, setSelectDate] = useState(getToday());
-  const [isOpen, setIsOpen] = useState(false)
-  const [isPlansOpen, setIsPlansOpen] = useState(false)
-  const [currentPlans, setCurrentPlans] = useState(null)
+  const [isOpen, setIsOpen] = useState(false);
+  const [isPlansOpen, setIsPlansOpen] = useState(false);
+  const [currentPlans, setCurrentPlans] = useState(null);
 
- const modalDate = useSelector(state=>state.planns)
+  const modalDate = useSelector((state) => state.plansList);
 
   return (
     <div className="calendar-container">
       <CalendarHeader selectDate={selectDate} />
       <CalendarWeeks />
-      <CalendarDataInicatior
+      <CalendarDateIndicator
         selectDate={selectDate}
         setSelectDate={setSelectDate}
         setIsOpen={setIsOpen}
@@ -47,11 +47,6 @@ const Calendar = () => {
         currentPlans={currentPlans}
         setIsPlansOpen={setIsPlansOpen}
       />
-
     </div>
   );
 };
-
-
-
-export default Calendar

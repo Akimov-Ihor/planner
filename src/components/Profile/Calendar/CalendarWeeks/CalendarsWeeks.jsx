@@ -1,11 +1,10 @@
-import React from 'react'
-import './CalendarWeeks.css'
-import { useSelector } from 'react-redux'
+import React from 'react';
+import { useSelector } from 'react-redux';
 
+import './CalendarWeeks.css';
 
-const CalendarWeeks = () => {
-  const weekdays = useSelector(state=>state.weekdays)
-
+export const CalendarWeeks = () => {
+  const weekdays = useSelector((state) => state.weekdays);
   return (
     <div className="calendar-weekday-indicators">
       {
@@ -17,8 +16,6 @@ const CalendarWeeks = () => {
           );
         })
       }
-
     </div>
-  )
-}
-export default CalendarWeeks
+  );
+};

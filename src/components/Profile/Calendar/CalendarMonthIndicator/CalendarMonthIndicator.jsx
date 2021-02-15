@@ -1,18 +1,19 @@
 import React from 'react';
-import { getMonth, getSpecificDate, getYear } from '../../../utils/date-moment'
-import './CalendarMonthIndicatior.css'
 import { useSelector } from 'react-redux';
 
-const CalendarMonthIndicator = ({ selectDate, setSelectDate }) => {
-   const monthsFull = useSelector(state=>state.monthsFull)
+import { getMonth, getSpecificDate, getYear } from '../../../utils/date-moment';
+import './CalendarMonthIndicatior.css';
+
+export const CalendarMonthIndicator = ({ selectDate, setSelectDate }) => {
+  const monthsFull = useSelector((state) => state.monthsFull);
   const changeMonth = (e) => setSelectDate(e.target.getAttribute('data-date'));
 
-  const getMonthSet = (selectDate) => {
-    const month = getMonth(selectDate) + 1;
+  const getMonthSet = (newSelectedDate) => {
+    const month = getMonth(newSelectedDate) + 1;
     const result = {
-      current: selectDate,
-      prev: getSpecificDate(month - 1, 1, getYear(selectDate)),
-      next: getSpecificDate(month + 1, 1, getYear(selectDate)),
+      current: newSelectedDate,
+      prev: getSpecificDate(month - 1, 1, getYear(newSelectedDate)),
+      next: getSpecificDate(month + 1, 1, getYear(newSelectedDate)),
     };
 
     if (month === 1) {
@@ -27,7 +28,6 @@ const CalendarMonthIndicator = ({ selectDate, setSelectDate }) => {
   };
   const monthSet = getMonthSet(selectDate);
 
-
   return (
     <div className="callendar-month-indicator">
       <h4 data-date={monthSet.prev} onClick={changeMonth}>
@@ -38,7 +38,5 @@ const CalendarMonthIndicator = ({ selectDate, setSelectDate }) => {
         {monthsFull[getMonth(monthSet.next)]}
       </h4>
     </div>
-  )
-}
-
-export default CalendarMonthIndicator
+  );
+};

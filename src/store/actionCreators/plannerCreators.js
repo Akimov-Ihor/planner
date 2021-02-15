@@ -1,5 +1,5 @@
-import * as types from '../actionsTypes/plannerTypes'
+import * as types from '../actionsTypes/plannerTypes';
 
-export const set_isAuth= value => ({ type: types.SET_IS_AUTH, payload: value })
-export const set_Plann = value => ({type:types.SET_PLANN,payload:value})
-export const filter_Plann = value => ({type:types.FILTER_PLANN,payload:value})
+export const setIsAuth = (value) => ({ type: types.SET_IS_AUTH, payload: value });
+export const setPlann = (value) => ({ type: types.setPlann, payload: value });
+export const filterPlann = (value) => ({ type: types.filterPlann, payload: value });

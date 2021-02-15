@@ -1,21 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import Planner from './components/Planner';
-import { BrowserRouter } from "react-router-dom";
-import reportWebVitals from './reportWebVitals';
-import store from './store/store'
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import 'semantic-ui-css/semantic.min.css'
+import { Planner } from './components/Planner';
+import reportWebVitals from './reportWebVitals';
+import { store } from './store/store';
+
+import 'semantic-ui-css/semantic.min.css';
+import './index.css';
 
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
       <Planner />
     </Provider>
-
-  </BrowserRouter>
-  , document.getElementById('root')
+  </BrowserRouter>,
+  document.getElementById('root'),
 );
 
 reportWebVitals();
