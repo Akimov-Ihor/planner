@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   Button, Form, Header, Segment,
 } from 'semantic-ui-react';
+import { history } from '../../routing/history';
 import { setIsAuth } from '../../store/actionCreators/plannerCreators';
 
 import './Login.css';
@@ -11,9 +11,6 @@ import './Login.css';
 const ADMIN = 'admin';
 
 export const Login = () => {
-  const history = useHistory();
-
-  const isAuth = useSelector((state) => state.isAuth);
   const dispatch = useDispatch();
 
   const [login, setLogin] = useState('');
@@ -22,11 +19,11 @@ export const Login = () => {
   const checkForm = (event) => {
     event.preventDefault();
     if (login === ADMIN && password === ADMIN) {
-      dispatch(setIsAuth(!isAuth));
-      history.push('/main');
+      dispatch(setIsAuth(true));
+      return history.push('/main');
     }
     setLogin('');
-    setPassword('');
+    return setPassword('');
   };
   return (
     <div className="login-wrapper">
