@@ -43,6 +43,7 @@ const Calendar = () => {
       />
       <ShowPlans
         isPlansOpen={isPlansOpen}
+        modalDate={modalDate}
         currentPlans={currentPlans}
         setIsPlansOpen={setIsPlansOpen}
       />

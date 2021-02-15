@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Input, TextArea, Form, Button, Icon } from 'semantic-ui-react'
-
+import {set_Plann} from '../../store/actionCreators/plannerCreators'
 import './Modal.css'
-import { set_Plann } from '../../store/actionCreators/plannerCreators';
+import { getDateInSec } from '../utils/date-moment';
 
 const Modal = ({ isOpen, setIsOpen, selectDate }) => {
   const openCloseModal = () => setIsOpen(!isOpen)
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   
+ 
   const dispatch = useDispatch()
   const sentData = () => {
     dispatch(set_Plann({
       title,
       description,
-      date: selectDate.toString()
+      date: selectDate.toString(),
+      id: getDateInSec(selectDate)+title
     }))
     setTitle('')
     setDescription('')
     openCloseModal()
   }
-  console.log(selectDate)
+  
 
   return (
     <>

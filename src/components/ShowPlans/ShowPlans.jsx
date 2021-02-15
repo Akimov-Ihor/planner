@@ -1,9 +1,21 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Icon } from 'semantic-ui-react'
+import { filter_Plann} from '../../store/actionCreators/plannerCreators';
 import './ShowPlans.css'
 
 const ShowPlans = ({ isPlansOpen, currentPlans, setIsPlansOpen }) => {
-  const closePlans = () => console.log(setIsPlansOpen(!isPlansOpen))
+  const closePlans = () => setIsPlansOpen(!isPlansOpen)
+  const dispatch = useDispatch()
+  const planns = useSelector(state=> state.planns)
+  const plannsCopy =[...planns]
+  
+
+  const deltePlann = (obj) => {
+   const newPlanns = plannsCopy.filter(planns => planns.id !== obj.id)
+   dispatch(filter_Plann(newPlanns))
+   closePlans()
+  }
 
   return (
     <>
@@ -27,6 +39,12 @@ const ShowPlans = ({ isPlansOpen, currentPlans, setIsPlansOpen }) => {
                 <Button.Content hidden>Close</Button.Content>
                 <Button.Content visible>
                   <Icon name='close' />
+                </Button.Content>
+              </Button>
+              <Button animated='vertical' onClick={() => deltePlann(currentPlans)}>
+                <Button.Content hidden>Delete</Button.Content>
+                <Button.Content visible>
+                  <Icon name='delete' />
                 </Button.Content>
               </Button>
             </div>

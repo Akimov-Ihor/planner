@@ -18,6 +18,13 @@ export const plannerReducer = (state = initialState, action) => {
                     planns:[...state.planns,action.payload]
                 }
             }
+        case types.FILTER_PLANN:    
+        {
+            return {
+                ...state,
+                planns:[...action.payload]
+            }
+        }
 
         default:
             return state;
