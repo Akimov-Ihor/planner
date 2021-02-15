@@ -42,6 +42,7 @@ export const CalendarDateIndicator = ({
         return (
           <div
             key={`${key + i.date + i.currentMonth}`}
+            style={activeDay(i.date) ? { cursor: 'pointer' } : { cursor: 'default' }}
             className={
               `calendar-date-indicator ${i.currentMonth ? 'active' : 'non-active'} 
               ${i.date.toString() === selectDate

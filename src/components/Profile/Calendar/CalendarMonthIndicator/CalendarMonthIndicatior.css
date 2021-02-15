@@ -6,6 +6,19 @@
   align-items: baseline
   
 }
-.callendar-month-indicator h3, h4 {
+.callendar-month-indicator div {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  margin-top: 2%;
   cursor: pointer;
+  outline: none;
+  user-select: none
+
+}
+.callendar-month-indicator{
+  font-size: 2rem!important;
+  cursor: default!important;
+  font-weight: bold
+
 }

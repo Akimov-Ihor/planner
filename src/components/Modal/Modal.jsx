@@ -5,7 +5,7 @@ import {
 } from 'semantic-ui-react';
 import { setPlann } from '../../store/actionCreators/plannerCreators';
 import './Modal.css';
-import { getDateInSec } from '../../utils/date-moment';
+import { createRandomId } from '../../utils/createRandomId';
 
 export const Modal = ({ isOpen, setIsOpen, selectDate }) => {
   const openCloseModal = () => setIsOpen(!isOpen);
@@ -18,13 +18,13 @@ export const Modal = ({ isOpen, setIsOpen, selectDate }) => {
       title,
       description,
       date: selectDate.toString(),
-      id: getDateInSec(selectDate) + title,
+      id: createRandomId(),
     }));
     setTitle('');
     setDescription('');
     openCloseModal();
   };
-  console.log((title === '') && (description === ''));
+
   return (
     <>
       { isOpen

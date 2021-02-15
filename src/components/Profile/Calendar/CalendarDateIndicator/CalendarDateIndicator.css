@@ -9,15 +9,18 @@
  border: solid black;
 }
 .calendar-date-indicator-current{
-  font-size: 21px;
-  cursor: pointer;
   width: 26%;
+  font-size: 21px;
+  font-weight: bold;
+ 
 }
 .calendar-date-indicator-plans {
+  cursor: default;
   width: 73%;
   overflow: auto;
 }
 .calendar-date-indicator-plans div{
+  cursor: pointer;
   height: 20px;
   align-items: center;
   overflow: hidden;

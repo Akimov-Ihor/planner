@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Icon } from 'semantic-ui-react';
 
 import { getMonth, getSpecificDate, getYear } from '../../../../utils/date-moment';
 import './CalendarMonthIndicatior.css';
@@ -30,13 +31,20 @@ export const CalendarMonthIndicator = ({ selectDate, setSelectDate }) => {
 
   return (
     <div className="callendar-month-indicator">
-      <h4 data-date={monthSet.prev} onClick={changeMonth}>
-        {monthsFull[getMonth(monthSet.prev)]}
-      </h4>
-      <h3>{monthsFull[getMonth(monthSet.current)]}</h3>
-      <h4 data-date={monthSet.next} onClick={changeMonth}>
-        {monthsFull[getMonth(monthSet.next)]}
-      </h4>
+      <div>
+        <Icon name="chevron left" />
+        <div data-date={monthSet.prev} onClick={changeMonth}>
+          {monthsFull[getMonth(monthSet.prev)]}
+        </div>
+
+      </div>
+      <div className="callendar-month-indicator">{monthsFull[getMonth(monthSet.current)]}</div>
+      <div>
+        <div data-date={monthSet.next} onClick={changeMonth}>
+          {monthsFull[getMonth(monthSet.next)]}
+        </div>
+        <Icon name="chevron right" />
+      </div>
     </div>
   );
 };
