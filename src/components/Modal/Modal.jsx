@@ -24,7 +24,7 @@ export const Modal = ({ isOpen, setIsOpen, selectDate }) => {
     setDescription('');
     openCloseModal();
   };
-
+  console.log((title === '') && (description === ''));
   return (
     <>
       { isOpen
@@ -57,7 +57,11 @@ export const Modal = ({ isOpen, setIsOpen, selectDate }) => {
                   />
                 </div>
                 <div className="modal-button">
-                  <Button animated="vertical" onClick={() => sentData()}>
+                  <Button
+                    animated="vertical"
+                    disabled={(title === '' || description === '')}
+                    onClick={() => sentData()}
+                  >
                     <Button.Content hidden>Add</Button.Content>
                     <Button.Content visible>
                       <Icon name="add" />

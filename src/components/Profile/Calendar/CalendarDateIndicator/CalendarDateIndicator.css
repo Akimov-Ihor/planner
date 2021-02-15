@@ -9,23 +9,21 @@
  border: solid black;
 }
 .calendar-date-indicator-current{
-  font-size: 50px;
+  font-size: 21px;
   cursor: pointer;
-  width: 50%;
+  width: 26%;
 }
-.calendar-date-indicator-plans ul{
-  margin: 0;
-  padding: 0;
-  width: 90%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+.calendar-date-indicator-plans {
+  width: 73%;
+  overflow: auto;
 }
-.calendar-date-indicator ul > li {
+.calendar-date-indicator-plans div{
+  height: 20px;
+  align-items: center;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .сhoosenDay{
   border: solid rgb(80, 80, 197);
 }
@@ -34,4 +32,7 @@
 }
 .active {
   color: #1b2922
+}
+.calendar-non-active-day {
+  background-color: rgb(25 24 24 / 25%) ;
 }

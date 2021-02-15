@@ -1,0 +1,10 @@
+.plann-card-wrapper{
+    width: 87%;
+    border:solid rgba(11, 114, 211, 0.788);
+    border-radius: 15px;
+    background-color:rgb(11, 114, 211) ;
+    color: rgb(28 23 33 / 92%);
+    text-align: center;
+    margin-top: 3px;
+    padding-left: 3px;
+}

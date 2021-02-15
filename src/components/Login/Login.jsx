@@ -19,7 +19,7 @@ export const Login = () => {
   const checkForm = (event) => {
     event.preventDefault();
     if (login === ADMIN && password === ADMIN) {
-      dispatch(setIsAuth(true));
+      setIsAuth(true, dispatch);
       return history.push('/main');
     }
     setLogin('');

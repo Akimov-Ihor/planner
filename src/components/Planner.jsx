@@ -13,7 +13,7 @@ export const Planner = () => {
   const isAuth = useSelector((state) => state.isAuth);
 
   if (!isAuth) {
-    history.push('/main');
+    history.push('/login');
   }
   return (
     <Switch>

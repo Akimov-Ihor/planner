@@ -2,10 +2,12 @@ import React from 'react';
 import {
   getDayOfMonth,
   getMonth,
+  getToday,
   getYear,
 } from '../../../../utils/date-moment';
 
 import { getDatesInMonthDisplay } from '../../../../utils/date-utils';
+import { PlannCard } from '../../../PlannCard/PlannCard.jsx';
 import './CalendarDateIndicator.css';
 
 export const CalendarDateIndicator = ({
@@ -30,7 +32,9 @@ export const CalendarDateIndicator = ({
     setCurrentPlans(data);
     setIsPlansOpen(!isPlansOpen);
   };
-
+  const activeDay = (data) => {
+    return getToday() < data;
+  };
   return (
     <div className="calendar-date">
       {
@@ -40,7 +44,12 @@ export const CalendarDateIndicator = ({
             key={`${key + i.date + i.currentMonth}`}
             className={
               `calendar-date-indicator ${i.currentMonth ? 'active' : 'non-active'} 
-              ${i.date.toString() === selectDate ? 'сhoosenDay' : 'others'} `
+              ${i.date.toString() === selectDate
+                ? 'сhoosenDay'
+                : 'others'} 
+              ${activeDay(i.date)
+                  ? 'calendar-active-day'
+                  : 'calendar-non-active-day'} `
             }
           >
             <div
@@ -48,7 +57,7 @@ export const CalendarDateIndicator = ({
               data-active-month={i.currentMonth}
               data-date={i.date.toString()}
               key={key}
-              onClick={changeDate}
+              onClick={activeDay(i.date) ? changeDate : null}
             >
               {getDayOfMonth(i.date)}
             </div>
@@ -57,26 +66,25 @@ export const CalendarDateIndicator = ({
               key={`${key + i.date} `}
 
             >
-              <ul>
-                {
+              {
                   modalDate.length
                     ? modalDate.map((obj, idx) => {
                       return (
                         obj.date.toString() === i.date.toString()
                           ? (
-                            <li
-                              onClick={() => openPlans(obj)}
+                            <PlannCard
+                              openPlans={openPlans}
+                              obj={obj}
                               key={idx}
-                            >
-                              {obj.title}
-                            </li>
+                              title={obj.title}
+                              description={obj.description}
+                            />
                           )
                           : ''
                       );
                     })
                     : ''
                 }
-              </ul>
             </div>
           </div>
         );
