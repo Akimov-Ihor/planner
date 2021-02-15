@@ -1,15 +1,22 @@
-import React, { useState } from 'react'
-import { Route, Switch, NavLink } from 'react-router-dom';
+import React  from 'react'
+import { Route, Switch, NavLink, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
 import './Planner.css';
 import Login from './Login/Login';
 import Main from '../components/Profile/Main/Main'
 import Calendar from '../components/Profile/Calendar/Calendar'
+import { set_isAuth } from '../store/actionCreators/plannerCreators';
+import { useHistory } from "react-router-dom";
 
 const Planner = () => {
-  const [isAuth, setIsAuth] = useState(true)
-   if(isAuth ){
-     
-   }
+   const isAuth = useSelector(state=>state.isAuth)
+   const dispatch = useDispatch()
+   const history = useHistory();
+  
+   if(!isAuth){
+    history.push("/login");
+  }
+   
   return (
     <div className='plannerWrapper'>
       <h1>Your Planner</h1>
@@ -22,7 +29,7 @@ const Planner = () => {
             <li>
               <NavLink to="/calendar">Planner</NavLink>
             </li>
-            <li onClick={() => setIsAuth(!isAuth)}>
+            <li onClick={()=>dispatch(set_isAuth(!isAuth))}>
               <NavLink to="/login">Logout</NavLink>
             </li>
           </ul>
@@ -32,7 +39,7 @@ const Planner = () => {
       <Switch>
         <Route path="/main" render={() => <Main />} />
         <Route path="/calendar" render={() => <Calendar />} />
-        <Route path='/login' render={() => <Login setIsAuth={setIsAuth} isAuth={isAuth}/>} />
+        <Route exact path='/login' render={() => <Login  isAuth={isAuth}/>} />
       </Switch>
     </div>
   );

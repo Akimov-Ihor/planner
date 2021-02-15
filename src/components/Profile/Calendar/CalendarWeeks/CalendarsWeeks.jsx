@@ -1,10 +1,10 @@
 import React from 'react'
 import './CalendarWeeks.css'
-import {weekdays} from '../../../utils/data'
+import { useSelector } from 'react-redux'
 
 
 const CalendarWeeks = () => {
-
+  const weekdays = useSelector(state=>state.weekdays)
 
   return (
     <div className="calendar-weekday-indicators">

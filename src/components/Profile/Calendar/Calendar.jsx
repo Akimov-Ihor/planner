@@ -8,20 +8,16 @@ import CalendarMonthIndicator from './CalendarMonthIndicator/CalendarMonthIndica
 
 import Modal from '../../Modal/Modal.jsx'
 import ShowPlans from '../../ShowPlans/ShowPlans'
+import { useSelector } from 'react-redux'
 
 const Calendar = () => {
-  const [selectDate, setSelectDate] =
-    useState(getToday());
+  const [selectDate, setSelectDate] = useState(getToday());
   const [isOpen, setIsOpen] = useState(false)
-  const [modalDate, setModalDate] = useState([{ title: 'test', description: 'test', date: selectDate }])
   const [isPlansOpen, setIsPlansOpen] = useState(false)
   const [currentPlans, setCurrentPlans] = useState(null)
 
-  const modalDateState = (obj) => {
-    return setModalDate(prev => {
-      return [...prev, obj]
-    })
-  }
+ const modalDate = useSelector(state=>state.planns)
+
   return (
     <div className="calendar-container">
       <CalendarHeader selectDate={selectDate} />
@@ -43,7 +39,6 @@ const Calendar = () => {
       <Modal
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        setModalDate={modalDateState}
         selectDate={selectDate}
       />
       <ShowPlans

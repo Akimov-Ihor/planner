@@ -1,10 +1,10 @@
 import React from 'react';
 import { getMonth, getSpecificDate, getYear } from '../../../utils/date-moment'
-import { monthsFull } from '../../../utils/data';
 import './CalendarMonthIndicatior.css'
+import { useSelector } from 'react-redux';
 
 const CalendarMonthIndicator = ({ selectDate, setSelectDate }) => {
-
+   const monthsFull = useSelector(state=>state.monthsFull)
   const changeMonth = (e) => setSelectDate(e.target.getAttribute('data-date'));
 
   const getMonthSet = (selectDate) => {

@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import React  from 'react'
 import {
   getDayOfMonth,
-  getToday,
   getMonth,
   getYear,
-  getTodaySecFormat
 } from '../../../utils/date-moment';
 
 
@@ -62,17 +60,19 @@ const CalendarDateIndicator = ({ selectDate, setSelectDate, setIsOpen, isOpen, m
             >
               <ul >
                 {
-                  modalDate.length && modalDate.map((obj, idx) => {
-                    return (
-                      obj.date.toString() === i.date.toString()
-                        ? <li
-                          onClick={() => openPlans(obj)}
-                          key={idx}>{obj.title}
-                        </li>
-                        : null
-                    )
+                  modalDate.length
+                    ? modalDate.map((obj, idx) => {
+                      return (
+                        obj.date.toString() === i.date.toString()
+                          ? <li
+                            onClick={() => openPlans(obj)}
+                            key={idx}>{obj.title}
+                          </li>
+                          : ''
+                      )
 
-                  })
+                    })
+                    : ''
                 }
               </ul>
             </div>

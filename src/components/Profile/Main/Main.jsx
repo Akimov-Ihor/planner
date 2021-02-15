@@ -1,7 +1,14 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import {Redirect} from 'react-router-dom'
 import './Main.css'
 
-const Main = () => {
+const Main = (isAuth) => {
+   if(!isAuth){
+      <Redirect  from='/main'to='/login'/>
+    }
+
+    const user = useSelector(state=> state.user)
    return (
       <div className="main_wrapper">
          <div className='main_block'>
@@ -13,14 +20,14 @@ const Main = () => {
                      <img src="https://blacksea7.com/images/avatar2.png" alt="personal_photo"/>
                   </div>
                   <div className='main_info_user_contacts'>
-                     <div>Name</div>
-                     <div>Email</div>
-                     <div>Number</div>
+                     <div>Name: {user.name}</div>
+                     <div>Email: {user.email}</div>
+                     <div>Number: {user.number}</div>
                   </div>
                </div>
                <div className='main_info_user_status'>
-                  <div>Status</div>
-                  <div>Personal Status</div>
+                  <div>Status:  {user.status}</div>
+                  <div>Personal Status:  {user.personalStatus}</div>
                </div>
             </div>
 
