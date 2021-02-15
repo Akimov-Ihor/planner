@@ -3,7 +3,7 @@ import {
   getReadableMonthDate,
   getReadableWeekday,
   getYear,
-} from '../../../utils/date-moment';
+} from '../../../../utils/date-moment';
 import './CalendarHeader.css';
 
 export const CalendarHeader = ({ selectDate }) => {

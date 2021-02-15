@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { Planner } from './components/Planner';
+import { Planner } from './components/Planner.jsx';
 import reportWebVitals from './reportWebVitals';
 import { store } from './store/store';
 

@@ -3,9 +3,9 @@ import {
   getDayOfMonth,
   getMonth,
   getYear,
-} from '../../../utils/date-moment';
+} from '../../../../utils/date-moment';
 
-import { getDatesInMonthDisplay } from '../../../utils/date-utils';
+import { getDatesInMonthDisplay } from '../../../../utils/date-utils';
 import './CalendarDateIndicator.css';
 
 export const CalendarDateIndicator = ({

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getToday } from '../../utils/date-moment';
+import { getToday } from '../../../utils/date-moment';
 
 import { CalendarHeader } from './CalendarHeader/CalendarHeader.jsx';
 import { CalendarWeeks } from './CalendarWeeks/CalendarsWeeks.jsx';

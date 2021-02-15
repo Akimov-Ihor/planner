@@ -5,7 +5,7 @@ import {
 } from 'semantic-ui-react';
 import { setPlann } from '../../store/actionCreators/plannerCreators';
 import './Modal.css';
-import { getDateInSec } from '../utils/date-moment';
+import { getDateInSec } from '../../utils/date-moment';
 
 export const Modal = ({ isOpen, setIsOpen, selectDate }) => {
   const openCloseModal = () => setIsOpen(!isOpen);

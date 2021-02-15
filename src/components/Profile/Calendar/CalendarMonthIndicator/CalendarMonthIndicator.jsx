@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { getMonth, getSpecificDate, getYear } from '../../../utils/date-moment';
+import { getMonth, getSpecificDate, getYear } from '../../../../utils/date-moment';
 import './CalendarMonthIndicatior.css';
 
 export const CalendarMonthIndicator = ({ selectDate, setSelectDate }) => {
