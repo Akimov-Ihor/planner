@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { Planner } from './components/Planner.jsx';
 
 import { store } from './store/store';
+
 import { history } from './routing/history';
 
 import 'semantic-ui-css/semantic.min.css';
