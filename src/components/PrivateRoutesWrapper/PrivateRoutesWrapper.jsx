@@ -1,33 +1,17 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { Main } from '../Profile/Main/Main.jsx';
 import { Calendar } from '../Profile/Calendar/Calendar.jsx';
 
 import { PrivateRoute } from '../../utils/PrivateRouter.jsx';
-import { setIsAuth } from '../../store/actionCreators/plannerCreators';
+import { Navbar } from '../Navbar/Navbar.jsx';
 
-export const PrivateRoutesWrapper = ({ isAuth }) => {
-  const dispatch = useDispatch();
+export const PrivateRoutesWrapper = () => {
+  const isAuth = useSelector((state) => state.isAuth);
   return (
     <>
-      {isAuth
-        ? (
-          <nav>
-            <ul>
-              <li>
-                <NavLink to="/main">Main</NavLink>
-              </li>
-              <li>
-                <NavLink to="/calendar">Planner</NavLink>
-              </li>
-              <li onClick={() => dispatch(setIsAuth(!isAuth))}>
-                <NavLink to="/login">Logout</NavLink>
-              </li>
-            </ul>
-          </nav>
-        ) : null }
+      <Navbar />
       <PrivateRoute isAuth={isAuth} path="/main" component={Main} />
       <PrivateRoute isAuth={isAuth} path="/calendar" component={Calendar} />
     </>

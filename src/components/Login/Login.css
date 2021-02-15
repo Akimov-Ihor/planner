@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 45%;
+  height: 100vh;
 }
 .login-container{
   width:  37%;

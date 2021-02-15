@@ -19,7 +19,8 @@ export const Login = () => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
-  const checkForm = () => {
+  const checkForm = (event) => {
+    event.preventDefault();
     if (login === ADMIN && password === ADMIN) {
       dispatch(setIsAuth(!isAuth));
       history.push('/main');
@@ -53,7 +54,7 @@ export const Login = () => {
               value={password}
             />
             {/* <Button color='teal' fluid size='large' onClick={() => setIsAuth(!isAuth)}> */}
-            <Button color="teal" fluid size="large" onClick={checkForm}>
+            <Button type="submit" color="teal" fluid size="large" onClick={checkForm}>
               Login
             </Button>
           </Segment>
