@@ -1,12 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+
 import './Main.css';
 
-export const Main = (isAuth) => {
-  if (!isAuth) {
-    <Redirect from="/main" to="/login" />;
-  }
+export const Main = () => {
   const user = useSelector((state) => state.user);
   return (
     <div className="main_wrapper">
@@ -44,7 +41,6 @@ export const Main = (isAuth) => {
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );

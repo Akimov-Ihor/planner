@@ -13,9 +13,8 @@ export const PrivateRoutesWrapper = () => {
   return (
     <>
       <Navbar />
-      <PrivateRoute isAuth={isAuth} path="/main" component={Main} />
-      <PrivateRoute isAuth={isAuth} path="/calendar" component={Calendar} />
-
+      <PrivateRoute exact isAuth={isAuth} path="/" component={Main} />
+      <PrivateRoute exact isAuth={isAuth} path="/calendar" component={Calendar} />
     </>
   );
 };

@@ -3,7 +3,9 @@ import { useDispatch } from 'react-redux';
 import {
   Button, Form, Header, Segment,
 } from 'semantic-ui-react';
-import { history } from '../../routing/history';
+
+import { useHistory } from 'react-router';
+
 import { setIsAuth } from '../../store/actionCreators/plannerCreators';
 
 import './Login.css';
@@ -12,6 +14,7 @@ const ADMIN = 'admin';
 
 export const Login = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
@@ -20,7 +23,7 @@ export const Login = () => {
     event.preventDefault();
     if (login === ADMIN && password === ADMIN) {
       setIsAuth(true, dispatch);
-      return history.push('/main');
+      return history.push('/');
     }
     setLogin('');
     return setPassword('');
@@ -50,7 +53,6 @@ export const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             />
-            {/* <Button color='teal' fluid size='large' onClick={() => setIsAuth(!isAuth)}> */}
             <Button type="submit" color="teal" fluid size="large" onClick={checkForm}>
               Login
             </Button>
