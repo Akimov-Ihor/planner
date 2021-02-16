@@ -20,6 +20,9 @@ export const Login = () => {
   const [password, setPassword] = useState('');
 
   const checkForm = (event) => {
+    fetch('/api/users')
+      .then((users) => console.log(users));
+
     event.preventDefault();
     if (login === ADMIN && password === ADMIN) {
       setIsAuth(true, dispatch);

@@ -1,47 +1,69 @@
 [
+   {
+     "picture": "http://placehold.it/32x32",
+     "age": 28,
+     "username":"admin",
+     "name": "admin",
+     "gender": "male",
+     "company": "ULTRIMAX",
+     "email": "admin@admin.com",
+     "password":"admin",
+     "id":1
+    },
     {
-      "balance": "$3,946.45",
+      "username":"Ramsey",
       "picture": "http://placehold.it/32x32",
       "age": 23,
       "name": "Bird Ramsey",
       "gender": "male",
       "company": "NIMON",
-      "email": "birdramsey@nimon.com"
+      "email": "birdramsey@nimon.com",
+      "password":"test",
+      "id":2
     },
     {
-      "balance": "$2,499.49",
+      "username":"Burgess",
       "picture": "http://placehold.it/32x32",
       "age": 31,
       "name": "Lillian Burgess",
       "gender": "female",
       "company": "LUXURIA",
-      "email": "lillianburgess@luxuria.com"
+      "email": "lillianburgess@luxuria.com",
+      "password":"test",
+      "id":3
     },
     {
-      "balance": "$2,820.18",
+      "username":"Kristie",
+      "password":"test",
       "picture": "http://placehold.it/32x32",
       "age": 34,
       "name": "Kristie Cole",
       "gender": "female",
       "company": "QUADEEBO",
-      "email": "kristiecole@quadeebo.com"
+      "email": "kristiecole@quadeebo.com",
+      "id":4
     },
     {
-      "balance": "$3,277.32",
+      "username":"Leonor",
+      "password":"test",
       "picture": "http://placehold.it/32x32",
       "age": 30,
       "name": "Leonor Cross",
       "gender": "female",
       "company": "GRONK",
-      "email": "leonorcross@gronk.com"
+      "email": "leonorcross@gronk.com",
+      "id":5
     },
     {
-      "balance": "$1,972.47",
+      "username":"Marsh",
+      "password":"test",
       "picture": "http://placehold.it/32x32",
       "age": 28,
       "name": "Marsh Mccall",
       "gender": "male",
       "company": "ULTRIMAX",
-      "email": "marshmccall@ultrimax.com"
+      "email": "marshmccall@ultrimax.com",
+      "id":6
     }
+    
   ]
