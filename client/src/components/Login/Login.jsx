@@ -20,8 +20,9 @@ export const Login = () => {
   const [password, setPassword] = useState('');
 
   const checkForm = (event) => {
-    fetch('/api/users')
-      .then((users) => console.log(users));
+    fetch('http://localhost:5000/api/users')
+      .then((response) => response.json())
+      .then((data) => console.log(data));
 
     event.preventDefault();
     if (login === ADMIN && password === ADMIN) {

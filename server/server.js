@@ -1,9 +1,12 @@
 const fs = require('fs');
-const path = require('path');
 
 const express = require('express');
+const cors = require('cors')
 const bodyParser = require('body-parser')
+
 const app = express();
+app.use(cors());
+app.options('*', cors());
 
 app.use(bodyParser.json());
 
@@ -29,17 +32,7 @@ app.get('/api/plans',(req,res)=>{
     }
 
 })
-// app.post('/api/plans',(req,res)=>{
-//   try {
-//     const data = fs.readFileSync(`${__dirname}/constants/plans.json`, 'utf8')
-//     const formattedData = JSON.parse(data);
-//     const requestPlans = formattedData.filter(plan => plan.userId === Number(req.params.id))
-//     res.json(requestPlans)
-//   }catch (err) {
-//     res.status(500).send('Something broke!');
-//   }
 
-// })
 app.post('/api/plans/:id',(req,res)=>{
   try {
     const data = fs.readFileSync(`${__dirname}/constants/plans.json`, 'utf8')
@@ -51,7 +44,6 @@ app.post('/api/plans/:id',(req,res)=>{
   }
 
 })
-
 
 app.post('/api/login', (req,res)=>{
   const { username, password } = req.body;
