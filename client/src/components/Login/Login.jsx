@@ -3,14 +3,12 @@ import { useDispatch } from 'react-redux';
 import {
   Button, Form, Header, Segment,
 } from 'semantic-ui-react';
-
+import axios from 'axios';
 import { useHistory } from 'react-router';
 
-import { setIsAuth } from '../../store/actionCreators/plannerCreators';
+import { setIsAuth, setUser } from '../../store/actionCreators/plannerCreators';
 
 import './Login.css';
-
-const ADMIN = 'admin';
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -19,14 +17,18 @@ export const Login = () => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
-  const checkForm = (event) => {
-    fetch('http://localhost:5000/api/users')
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-
+  const checkForm = async (event) => {
     event.preventDefault();
-    if (login === ADMIN && password === ADMIN) {
+
+    const getLogin = await axios.post('http://localhost:5000/api/login', {
+      username: login,
+      password,
+    });
+
+    if (getLogin.data.length) {
       setIsAuth(true, dispatch);
+      console.log(getLogin.data[0]);
+      dispatch(setUser(getLogin.data[0]));
       return history.push('/');
     }
     setLogin('');

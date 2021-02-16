@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import {
   Input, TextArea, Form, Button, Icon,
 } from 'semantic-ui-react';
-import { setPlann } from '../../store/actionCreators/plannerCreators';
+import { SET_PLANN } from '../../store/actionCreators/plannerCreators';
 import './Modal.css';
 import { createRandomId } from '../../utils/createRandomId';
 
@@ -14,7 +14,7 @@ export const Modal = ({ isOpen, setIsOpen, selectDate }) => {
 
   const dispatch = useDispatch();
   const sentData = () => {
-    dispatch(setPlann({
+    dispatch(SET_PLANN({
       title,
       description,
       date: selectDate.toString(),

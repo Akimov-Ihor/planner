@@ -25,19 +25,19 @@ export const Main = () => {
                 {user.email}
               </div>
               <div>
-                Number:
-                {user.number}
+                Age:
+                {user.age}
               </div>
             </div>
           </div>
           <div className="main_info_user_status">
             <div>
-              Status:
-              {user.status}
+              Gender:
+              {user.gender}
             </div>
             <div>
-              Personal Status:
-              {user.personalStatus}
+              Company:
+              {user.company}
             </div>
           </div>
         </div>

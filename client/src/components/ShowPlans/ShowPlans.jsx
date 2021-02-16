@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Icon } from 'semantic-ui-react';
-import { filterPlann } from '../../store/actionCreators/plannerCreators';
+import { FILTER_PLAN } from '../../store/actionCreators/plannerCreators';
 import './ShowPlans.css';
 
 export const ShowPlans = ({ isPlansOpen, currentPlans, setIsPlansOpen }) => {
@@ -12,7 +12,7 @@ export const ShowPlans = ({ isPlansOpen, currentPlans, setIsPlansOpen }) => {
 
   const deltePlann = (obj) => {
     const newPlanns = plannsCopy.filter((planItem) => planItem.id !== obj.id);
-    dispatch(filterPlann(newPlanns));
+    dispatch(FILTER_PLAN(newPlanns));
     closePlans();
   };
 

@@ -10,14 +10,21 @@ export const plannerReducer = (state = initialState, action) => {
         isAuth: action.payload,
       };
     }
-    case types.setPlann:
+    case types.SET_USER:
+    {
+      return {
+        ...state,
+        user: action.payload,
+      };
+    }
+    case types.SET_PLANN:
     {
       return {
         ...state,
         plansList: [...state.plansList, action.payload],
       };
     }
-    case types.filterPlann:
+    case types.FILTER_PLAN:
     {
       return {
         ...state,
