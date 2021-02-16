@@ -24,6 +24,13 @@ export const plannerReducer = (state = initialState, action) => {
         plansList: [...state.plansList, action.payload],
       };
     }
+    case types.SET_ALL_PLANS:
+    {
+      return {
+        ...state,
+        plansList: [...action.payload],
+      };
+    }
     case types.FILTER_PLAN:
     {
       return {

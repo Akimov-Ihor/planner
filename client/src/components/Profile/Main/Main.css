@@ -18,3 +18,8 @@
   flex-direction: column;
   justify-content: space-evenly;
 }
+.main_titles_info {
+  font-size: 20px;
+    font-weight: bold;
+    color: #4183c4;
+}

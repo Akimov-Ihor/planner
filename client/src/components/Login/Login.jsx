@@ -26,8 +26,7 @@ export const Login = () => {
     });
 
     if (getLogin.data.length) {
-      setIsAuth(true, dispatch);
-      console.log(getLogin.data[0]);
+      dispatch(setIsAuth(true, dispatch));
       dispatch(setUser(getLogin.data[0]));
       return history.push('/');
     }

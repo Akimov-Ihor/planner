@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 import {
   Input, TextArea, Form, Button, Icon,
 } from 'semantic-ui-react';
-import { SET_PLANN } from '../../store/actionCreators/plannerCreators';
+// eslint-disable-next-line import/named
+import { setPlan } from '../../store/actionCreators/plannerCreators';
 import './Modal.css';
 import { createRandomId } from '../../utils/createRandomId';
 
@@ -14,7 +15,7 @@ export const Modal = ({ isOpen, setIsOpen, selectDate }) => {
 
   const dispatch = useDispatch();
   const sentData = () => {
-    dispatch(SET_PLANN({
+    dispatch(setPlan({
       title,
       description,
       date: selectDate.toString(),

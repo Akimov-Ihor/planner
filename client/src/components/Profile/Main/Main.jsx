@@ -5,6 +5,7 @@ import './Main.css';
 
 export const Main = () => {
   const user = useSelector((state) => state.user);
+  const [name, email, age, gender, company] = ['Name:', 'Email:', 'Age:', 'Gender:', 'Company:'];
   return (
     <div className="main_wrapper">
       <div className="main_block">
@@ -17,27 +18,25 @@ export const Main = () => {
             </div>
             <div className="main_info_user_contacts">
               <div>
-                Name:
+                <div className="main_titles_info">{name}</div>
                 {user.name}
               </div>
               <div>
-                Email:
+                <div className="main_titles_info">{ email}</div>
                 {user.email}
               </div>
               <div>
-                Age:
+                <div className="main_titles_info">{age}</div>
                 {user.age}
               </div>
-            </div>
-          </div>
-          <div className="main_info_user_status">
-            <div>
-              Gender:
-              {user.gender}
-            </div>
-            <div>
-              Company:
-              {user.company}
+              <div>
+                <div className="main_titles_info">{gender}</div>
+                {user.gender}
+              </div>
+              <div>
+                <div className="main_titles_info">{company}</div>
+                {user.company}
+              </div>
             </div>
           </div>
         </div>
