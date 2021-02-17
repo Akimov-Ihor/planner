@@ -63,8 +63,7 @@ app.delete('/api/plan/:id',(req,res)=>{
   try {
     const data = fs.readFileSync(`${__dirname}/constants/plans.json`, 'utf8')
     const parsingData = JSON.parse(data)
-    const newData = parsingData.filter(plann => req.body.id !== plann.id)
-    console.log(req.params.id)
+    const newData = parsingData.filter(plann => req.params.id !== plann.id)
    
     fs.writeFile(`${__dirname}/constants/plans.json`, JSON.stringify(newData),(err)=>{
       !err ? res.status(200).send('Delete plan') : res.send(err)
