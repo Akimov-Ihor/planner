@@ -57,7 +57,6 @@ export const setPlan = ({
 };
 
 export const filterPlan = ({ id, userId }) => async (dispatch) => {
-  console.log({ id });
   await axiosService.delete(`/plan/${id}`, { id });
   await getAllPlans(userId)(dispatch);
 };
