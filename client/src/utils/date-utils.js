@@ -9,7 +9,7 @@ export const getPrevMonthYear = (month, year) => {
 export const getNextMonthYear = (month, year) => {
   return {
     month: month === 1 ? month + 1 : 12,
-    year: month === 1 ? year : year + 1,
+    year: month === 1 || 12 ? year : year + 1,
   };
 };
 
@@ -60,7 +60,7 @@ export const getDatesInMonthDisplay = (month, year) => {
     for (let i = 1; i <= daysToAdd; i += 1) {
       result.push({
         date: moment(
-          `${next.month}-${i}-${next.year}`,
+          `${month + 1}-${i}-${next.year}`,
           'MM-DD-YYYY',
         ).toDate(),
         currentMonth: false,

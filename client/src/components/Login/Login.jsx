@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 import {
   Button, Form, Header, Segment,
 } from 'semantic-ui-react';
-import axios from 'axios';
-import { useHistory } from 'react-router';
 
-import { setIsAuth, setUser } from '../../store/actionCreators/plannerCreators';
+import { setIsAuth } from '../../store/actionCreators/plannerCreators';
 
 import './Login.css';
 
@@ -14,24 +13,14 @@ export const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [login, setLogin] = useState('');
+  const [username, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
   const checkForm = async (event) => {
     event.preventDefault();
-
-    const getLogin = await axios.post('http://localhost:5000/api/login', {
-      username: login,
-      password,
-    });
-
-    if (getLogin.data.length) {
-      dispatch(setIsAuth(true, dispatch));
-      dispatch(setUser(getLogin.data[0]));
-      return history.push('/');
-    }
-    setLogin('');
-    return setPassword('');
+    await setIsAuth({
+      isAuth: true, username, password, history,
+    })(dispatch);
   };
   return (
     <div className="login-wrapper">
@@ -47,7 +36,7 @@ export const Login = () => {
               iconPosition="left"
               placeholder="E-mail address"
               onChange={(e) => setLogin(e.target.value)}
-              value={login}
+              value={username}
             />
             <Form.Input
               fluid

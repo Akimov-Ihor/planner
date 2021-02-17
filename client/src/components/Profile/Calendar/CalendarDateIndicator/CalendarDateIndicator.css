@@ -21,7 +21,7 @@
 }
 .calendar-date-indicator-plans div{
   cursor: pointer;
-  height: 26px;
+  height: 21px;
   align-items: center;
   overflow: hidden;
   text-overflow: ellipsis;

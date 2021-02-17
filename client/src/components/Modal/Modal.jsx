@@ -3,27 +3,26 @@ import { useDispatch } from 'react-redux';
 import {
   Input, TextArea, Form, Button, Icon,
 } from 'semantic-ui-react';
-// eslint-disable-next-line import/named
+
 import { setPlan } from '../../store/actionCreators/plannerCreators';
 import './Modal.css';
-import { createRandomId } from '../../utils/createRandomId';
 
-export const Modal = ({ isOpen, setIsOpen, selectDate }) => {
-  const openCloseModal = () => setIsOpen(!isOpen);
+export const Modal = ({
+  isOpen, setIsOpen, selectDate, userId,
+}) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
   const dispatch = useDispatch();
-  const sentData = () => {
-    dispatch(setPlan({
-      title,
-      description,
-      date: selectDate.toString(),
-      id: createRandomId(),
-    }));
+  const openCloseModal = () => setIsOpen(!isOpen);
+
+  const sentData = async () => {
+    await setPlan({
+      title, description, selectDate, userId,
+    })(dispatch);
     setTitle('');
     setDescription('');
-    openCloseModal();
+    return openCloseModal();
   };
 
   return (

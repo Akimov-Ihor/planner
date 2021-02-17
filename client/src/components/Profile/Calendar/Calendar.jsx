@@ -17,6 +17,7 @@ export const Calendar = () => {
   const [currentPlans, setCurrentPlans] = useState(null);
 
   const modalDate = useSelector((state) => state.plansList);
+  const userId = useSelector((state) => state.user.id);
 
   return (
     <div className="calendar-container">
@@ -40,6 +41,7 @@ export const Calendar = () => {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         selectDate={selectDate}
+        userId={userId}
       />
       <ShowPlans
         isPlansOpen={isPlansOpen}
