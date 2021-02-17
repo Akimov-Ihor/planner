@@ -51,10 +51,24 @@ app.post('/api/plan/',(req,res)=>{
     newData.push(req.body)
    
     fs.writeFile(`${__dirname}/constants/plans.json`, JSON.stringify(newData),(err)=>{
-      !err ? res.status(200).send('Create new plan') : err
+      !err ? res.status(200).send('Create new plan') : res.send(err)
     })
-    // res.json(data)
-    // res.status(200).send('Create new plan')
+  
+  }catch (err) {
+    res.status(500).send('Something broke!');
+  }
+
+})
+app.delete('/api/plan/:id',(req,res)=>{
+  try {
+    const data = fs.readFileSync(`${__dirname}/constants/plans.json`, 'utf8')
+    const parsingData = JSON.parse(data)
+    const newData = parsingData.filter(plann => req.body.id !== plann.id)
+    console.log(req.params.id)
+   
+    fs.writeFile(`${__dirname}/constants/plans.json`, JSON.stringify(newData),(err)=>{
+      !err ? res.status(200).send('Delete plan') : res.send(err)
+    })
   
   }catch (err) {
     res.status(500).send('Something broke!');

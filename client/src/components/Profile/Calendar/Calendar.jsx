@@ -48,6 +48,7 @@ export const Calendar = () => {
         modalDate={modalDate}
         currentPlans={currentPlans}
         setIsPlansOpen={setIsPlansOpen}
+        userId={userId}
       />
     </div>
   );

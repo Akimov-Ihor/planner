@@ -9,7 +9,7 @@ export const setIsAuth = (
   },
 ) => async (dispatch) => {
   try {
-    const userData = await axiosService.post('login', {
+    const userData = await axiosService.post('/login', {
       username,
       password,
     });
@@ -49,11 +49,14 @@ export const setPlan = ({
       userId,
     };
 
-    await axiosService.post('/plan/', plan);
+    await axiosService.post('/plan', plan);
     return await getAllPlans(userId)(dispatch);
   } catch (e) {
     return console.log(e);
   }
 };
 
-export const filterPlan = (value) => ({ type: types.FILTER_PLAN, payload: value });
+export const filterPlan = ({ id, userId }) => async (dispatch) => {
+  await axiosService.delete(`/plan/${id}`, { id });
+  await getAllPlans(userId)(dispatch);
+};

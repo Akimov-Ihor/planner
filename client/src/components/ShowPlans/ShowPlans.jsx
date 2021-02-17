@@ -1,19 +1,24 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button, Icon } from 'semantic-ui-react';
-// eslint-disable-next-line import/named
 import { filterPlan } from '../../store/actionCreators/plannerCreators';
 import './ShowPlans.css';
 
-export const ShowPlans = ({ isPlansOpen, currentPlans, setIsPlansOpen }) => {
+export const ShowPlans = ({
+  isPlansOpen, currentPlans, setIsPlansOpen, userId,
+}) => {
   const closePlans = () => setIsPlansOpen(!isPlansOpen);
   const dispatch = useDispatch();
-  const plansList = useSelector((state) => state.plansList);
-  const plannsCopy = [...plansList];
+  // const plansList = useSelector((state) => state.plansList);
+  // const plannsCopy = [...plansList];
 
-  const deltePlann = (obj) => {
-    const newPlanns = plannsCopy.filter((planItem) => planItem.id !== obj.id);
-    dispatch(filterPlan(newPlanns));
+  const deletePlan = async () => {
+    // const id = plannsCopy.find(() => currentPlans.id);
+    // eslint-disable-next-line prefer-destructuring
+    const id = currentPlans.id;
+    // console.log(currentPlans, id);
+    // console.log(currentPlans.id);
+    await filterPlan({ id, userId })(dispatch);
     closePlans();
   };
 
@@ -42,7 +47,7 @@ export const ShowPlans = ({ isPlansOpen, currentPlans, setIsPlansOpen }) => {
                     <Icon name="close" />
                   </Button.Content>
                 </Button>
-                <Button animated="vertical" onClick={() => deltePlann(currentPlans)}>
+                <Button animated="vertical" onClick={() => deletePlan(currentPlans)}>
                   <Button.Content hidden>Delete</Button.Content>
                   <Button.Content visible>
                     <Icon name="delete" />
