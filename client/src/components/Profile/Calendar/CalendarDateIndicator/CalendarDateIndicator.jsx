@@ -17,6 +17,7 @@ export const CalendarDateIndicator = ({
   selectDate, setSelectDate, setIsOpen, isOpen, modalDate, isPlansOpen, setIsPlansOpen, setCurrentPlans,
 }) => {
   const userId = useSelector((state) => state.user.id);
+  console.log(userId);
   const dispatch = useDispatch();
 
   useEffect(async () => {

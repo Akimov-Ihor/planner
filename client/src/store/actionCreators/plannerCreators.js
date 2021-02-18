@@ -13,10 +13,9 @@ export const setIsAuth = (
       username,
       password,
     });
-
     if (userData.status !== 404) {
       dispatch(({ type: types.SET_IS_AUTH, payload: isAuth }));
-      dispatch(({ type: types.SET_USER, payload: userData.data }));
+      dispatch(({ type: types.SET_USER, payload: userData.data[0] }));
       return history.push('/');
     }
     return userData.status !== 404;

@@ -5,6 +5,7 @@ import './Main.css';
 
 export const Main = () => {
   const user = useSelector((state) => state.user);
+
   const [name, email, age, gender, company] = ['Name:', 'Email:', 'Age:', 'Gender:', 'Company:'];
   return (
     <div className="main_wrapper">
