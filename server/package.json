@@ -4,8 +4,8 @@
   "description": "Node js planner",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon --exec babel-node server.js"
+    "start": "ACCESS_TOKEN_SECRET=megaSecret node server.js",
+    "dev": "ACCESS_TOKEN_SECRET=megaSecret nodemon --exec babel-node server.js"
   },
   "keywords": [
     "Node",
@@ -19,7 +19,9 @@
     "chalk": "^4.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
     "pg": "^8.5.1"
   },
   "devDependencies": {
