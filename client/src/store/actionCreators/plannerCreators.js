@@ -15,7 +15,8 @@ export const setIsAuth = (
     });
     if (userData.status !== 404) {
       dispatch(({ type: types.SET_IS_AUTH, payload: isAuth }));
-      dispatch(({ type: types.SET_USER, payload: userData.data[0] }));
+      dispatch(({ type: types.SET_USER, payload: userData.data[0][0] }));
+      localStorage.setItem('token', userData.data[1]);
       return history.push('/');
     }
     return userData.status !== 404;
