@@ -15,9 +15,10 @@ app.use(bodyParser.json());
 
 app.get('/api/users', (req, res) => {
   try {
-    const data = fs.readFileSync(`${__dirname}/constants/users.json`, 'utf8');
-    const formattedData = JSON.parse(data);
-    res.json(formattedData);
+    con.query('SELECT * FROM "users"',
+      (err, data) => (!err
+        ? res.status(200).send('Success')
+        : res.status(404).send('Users not found')));
   } catch (err) {
     res.status(500).send('Something broke!');
   }
@@ -25,9 +26,10 @@ app.get('/api/users', (req, res) => {
 
 app.get('/api/plans', (req, res) => {
   try {
-    const data = fs.readFileSync(`${__dirname}/constants/plans.json`, 'utf8');
-    const formattedData = JSON.parse(data);
-    res.json(formattedData);
+    con.query('SELECT * FROM "plans"',
+      (err, data) => (!err
+        ? res.status(200).send('Success')
+        : res.status(404).send('Plans not found')));
   } catch (err) {
     res.status(500).send('Something broke!');
   }
@@ -35,23 +37,24 @@ app.get('/api/plans', (req, res) => {
 
 app.get('/api/plans/:userId', (req, res) => {
   try {
-    console.log(req.params);
-    // con.query('SELECT * FROM "plans" WHERE users.id =$1 ', ['1'], (err, data) => console.log(data.rows));
-    // (!err && row.rows.length ? res.send(row.rows) : res.status(404).send('Plans not found'))
-    // );
-    // (!err && row.rows.length ? res.send(row.rows) : res.status(404).send('User not found')));
+    con.query('SELECT * FROM "plans" WHERE user_id = $1 ',
+      [req.params.userId],
+      (err, data) => (!err && data.rows.length
+        ? res.send(data.rows)
+        : res.status(404).send('Plans not found')));
   } catch (err) {
     res.status(500).send('Something broke!');
   }
 });
 
-app.post('/api/plan/', (req, res) => {
+app.post('/api/plans/', (req, res) => {
   try {
-    const data = fs.readFileSync(`${__dirname}/constants/plans.json`, 'utf8');
-    const newData = JSON.parse(data);
-    newData.push(req.body);
-    // fs.writeFile(`${__dirname}/constants/plans.json`, JSON.stringify(newData), (err) =>
-    // (!err ? res.status(200).send('Create new plan') : res.send(err)));
+    const reqBody = req.body;
+    con.query('INSERT INTO "plans" (title, description, date, id, user_id) VALUES ($1 ,$2 ,$3, $4 ,$5) ',
+      [reqBody.title, reqBody.description, reqBody.date, reqBody.id, reqBody.user_id],
+      (err, data) => (!err
+        ? res.status(200).send({ message: 'Create Success' })
+        : res.status(404).send('Can`t create new Plane')));
   } catch (err) {
     res.status(500).send('Something broke!');
   }
@@ -59,13 +62,11 @@ app.post('/api/plan/', (req, res) => {
 
 app.delete('/api/plan/:id', (req, res) => {
   try {
-    // const data = fs.readFileSync(`${__dirname}/constants/plans.json`, 'utf8');
-    // const parsingData = JSON.parse(data);
-    // const newData = parsingData.filter((plan) => JSON.stringify(req.params.id) !==
-    // JSON.stringify(plan.id.toString()));
-
-    // fs.writeFile(`${__dirname}/constants/plans.json`, JSON.stringify(newData), (err) =>
-    //     (!err ? res.status(200).send('Delete plan') : res.send(err)));
+    con.query('DELETE FROM "plans" WHERE id = $1',
+      [req.params.id],
+      (err, data) => (!err
+        ? res.send({ message: 'Delete Success' })
+        : res.send({ message: 'Can`t delete plann' })));
   } catch (err) {
     res.status(500).send('Something broke!');
   }
@@ -76,7 +77,9 @@ app.post('/api/login', (req, res) => {
   try {
     con.query('SELECT * FROM "users" WHERE username = $1 AND password = $2',
       [username, password],
-      (err, row) => (!err && row.rows.length ? res.send(row.rows) : res.status(404).send('User not found')));
+      (err, row) => (!err && row.rows.length
+        ? res.send(row.rows)
+        : res.status(404).send('User not found')));
   } catch (err) {
     res.status(500).send({ err });
   }

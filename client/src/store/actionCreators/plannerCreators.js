@@ -45,10 +45,10 @@ export const setPlan = ({
       description,
       date: getMonthDayYear(selectDate).toString(),
       id: createRandomId(),
-      userId,
+      user_id: userId,
     };
 
-    await axiosService.post('/plan', plan);
+    await axiosService.post('/plans', plan);
     return await getAllPlans(userId)(dispatch);
   } catch (e) {
     return console.log(e);
