@@ -9,7 +9,9 @@ module.exports = (app) => app.post('/api/login',
     try {
       con.query('SELECT * FROM "users" WHERE username = $1 AND password = $2',
         [username, password],
-        (err, row) => (!err && row.rows.length ? res.send([row.rows]) : res.status(404).send('User not found')));
+        (err, row) => (!err && row.rows.length
+          ? res.json({ userData: row.rows[0], token: jwt.sign({ user: row.rows[0] }, jwtSecret.secret) })
+          : res.status(404).send('User not found')));
     } catch (err) {
       res.status(500).send({ err });
     }

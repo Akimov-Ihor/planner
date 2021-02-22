@@ -1,6 +1,7 @@
 import { con } from '../db';
+import { authenticateToken } from '../middleware/verifyToken';
 
-module.exports = (app) => app.get('/api/plans/:userId', (req, res) => {
+module.exports = (app) => app.get('/api/plans/:userId', authenticateToken, (req, res) => {
   try {
     con.query('SELECT * FROM "plans" WHERE user_id = $1 ',
       [req.params.userId],

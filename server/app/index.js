@@ -4,8 +4,6 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const jwt = require('jsonwebtoken');
 
 const app = express();
 
@@ -22,6 +20,7 @@ require('../routes/deletePlan.js')(app);
 require('../routes/getAllPlans.js')(app);
 require('../routes/getAllUsers.js')(app);
 require('../routes/getUserPlans.js')(app);
+require('../routes/verifyAuth.js')(app);
 require('../routes/login.js')(app);
 
 const port = 5000;

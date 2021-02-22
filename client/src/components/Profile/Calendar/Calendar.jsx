@@ -17,7 +17,7 @@ export const Calendar = () => {
   const [currentPlans, setCurrentPlans] = useState(null);
 
   const modalDate = useSelector((state) => state.plansList);
-  const userId = useSelector((state) => state.user.id);
+  const userId = useSelector((state) => state.userData.id);
 
   return (
     <div className="calendar-container">

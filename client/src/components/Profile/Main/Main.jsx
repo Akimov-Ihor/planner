@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import './Main.css';
+import { useHistory } from 'react-router';
 
 export const Main = () => {
-  const user = useSelector((state) => state.user);
+  const history = useHistory();
 
+  const user = useSelector((state) => state.userData);
   const [name, email, age, gender, company] = ['Name:', 'Email:', 'Age:', 'Gender:', 'Company:'];
+  useEffect(() => {
+    console.log(user == null);
+    if (user == null) {
+      history.push('/');
+    }
+  });
   return (
     <div className="main_wrapper">
       <div className="main_block">

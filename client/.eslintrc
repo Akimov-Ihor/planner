@@ -44,6 +44,6 @@
     "jsx-a11y/label-has-for": 0,
     "arrow-body-style": 0,
     "react/jsx-props-no-spreading": 0,
-    "max-len": ["error", { "code": 120 }]
+    "max-len": ["error", { "code": 130 }]
   }
 }

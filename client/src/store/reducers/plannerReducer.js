@@ -3,18 +3,49 @@ import { initialState } from '../initialState';
 
 export const plannerReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.SET_IS_AUTH:
-    {
+    case types.LOGIN_REQUEST: {
       return {
         ...state,
-        isAuth: action.payload,
+        isLoggingIn: true,
+      };
+    }
+    case types.LOGIN_SUCCESS: {
+      const { userData } = action.payload;
+      return {
+        ...state,
+        isLoggingIn: false,
+        userData,
+      };
+    }
+    case types.LOGIN_FAILURE: {
+      return {
+        ...state,
+        isLoggingIn: false,
+      };
+    }
+    case types.VERIFY_AUTH_REQUEST: {
+      return {
+        ...state,
+        isVerifyingAuth: true,
+      };
+    }
+    case types.VERIFY_AUTH_SUCCESS: {
+      return {
+        ...state,
+        isVerifyingAuth: false,
+      };
+    }
+    case types.VERIFY_AUTH_FAILURE: {
+      return {
+        ...state,
+        isVerifyingAuth: false,
       };
     }
     case types.SET_USER:
     {
       return {
         ...state,
-        user: action.payload,
+        userData: action.payload,
       };
     }
     case types.SET_PLANN:
@@ -36,6 +67,13 @@ export const plannerReducer = (state = initialState, action) => {
       return {
         ...state,
         plansList: [...action.payload],
+      };
+    }
+    case types.LOGOUT:
+    {
+      return {
+        ...state,
+        userData: action.payload,
       };
     }
     default:

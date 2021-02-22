@@ -1,6 +1,7 @@
 import { con } from '../db';
+import { authenticateToken } from '../middleware/verifyToken';
 
-module.exports = (app) => app.post('/api/plans/', (req, res) => {
+module.exports = (app) => app.post('/api/plans/', authenticateToken, (req, res) => {
   try {
     const reqBody = req.body;
     con.query('INSERT INTO "plans" (title, description, date, id, user_id) VALUES ($1 ,$2 ,$3, $4 ,$5) ',

@@ -1,5 +1,4 @@
 export const initialState = {
-  isAuth: false,
   weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
   plansList: [],
   monthsFull: [
@@ -15,5 +14,7 @@ export const initialState = {
     'October',
     'November',
     'December'],
-  user: {},
+  userData: null,
+  isLoggingIn: false,
+  isVerifyingAuth: false,
 };

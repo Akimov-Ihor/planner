@@ -8,13 +8,26 @@ import { PrivateRoute } from '../../utils/PrivateRouter.jsx';
 import { Navbar } from '../Navbar/Navbar.jsx';
 
 export const PrivateRoutesWrapper = () => {
-  const isAuth = useSelector((state) => state.isAuth);
-
+  const [userDataFromStore, isVerifyingAuthFromStore] = useSelector(({ userData, isVerifyingAuth }) => [
+    userData, isVerifyingAuth,
+  ]);
   return (
     <>
       <Navbar />
-      <PrivateRoute exact isAuth={isAuth} path="/" component={Main} />
-      <PrivateRoute exact isAuth={isAuth} path="/calendar" component={Calendar} />
+      <PrivateRoute
+        exact
+        userData={userDataFromStore}
+        isVerifyingAuth={isVerifyingAuthFromStore}
+        path="/"
+        component={Main}
+      />
+      <PrivateRoute
+        exact
+        userData={userDataFromStore}
+        isVerifyingAuth={isVerifyingAuthFromStore}
+        path="/calendar"
+        component={Calendar}
+      />
     </>
   );
 };

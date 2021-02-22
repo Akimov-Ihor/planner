@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getDayOfMonth,
   getMonth,
-  getToday,
   getYear,
   getMonthDayYear,
+  getYesterdayFromToday,
 } from '../../../../utils/date-moment';
 
 import { getDatesInMonthDisplay } from '../../../../utils/date-utils';
@@ -16,8 +16,7 @@ import { getAllPlans } from '../../../../store/actionCreators/plannerCreators';
 export const CalendarDateIndicator = ({
   selectDate, setSelectDate, setIsOpen, isOpen, modalDate, isPlansOpen, setIsPlansOpen, setCurrentPlans,
 }) => {
-  const userId = useSelector((state) => state.user.id);
-  console.log(userId);
+  const userId = useSelector((state) => state.userData.id);
   const dispatch = useDispatch();
 
   useEffect(async () => {
@@ -44,7 +43,7 @@ export const CalendarDateIndicator = ({
     setIsPlansOpen(!isPlansOpen);
   };
   const activeDay = (data) => {
-    return getToday() < data;
+    return getYesterdayFromToday() < data;
   };
   return (
     <div className="calendar-date">
@@ -57,7 +56,7 @@ export const CalendarDateIndicator = ({
             className={
               `calendar-date-indicator ${i.currentMonth ? 'active' : 'non-active'} 
               ${i.date.toString() === selectDate
-                ? 'сhoosenDay'
+                ? 'chosenDay'
                 : 'others'} 
               ${activeDay(i.date)
                   ? 'calendar-active-day'

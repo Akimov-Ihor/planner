@@ -14,6 +14,8 @@ export const getToday = () => moment().toDate();
 
 export const getTodaySecFormat = (date) => moment().valueOf(date);
 
+export const getYesterdayFromToday = () => moment().subtract(1, 'days').startOf('day');
+
 export const getReadableWeekday = (date) => moment(date).format('dddd');
 
 export const getReadableMonthDate = (date) => moment(date).format('MMMM Do');
