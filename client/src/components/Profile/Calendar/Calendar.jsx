@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import { getToday } from '../../../utils/date-moment';
 
 import { CalendarHeader } from './CalendarHeader/CalendarHeader.jsx';
@@ -11,6 +12,7 @@ import { Modal } from '../../Modal/Modal.jsx';
 import { ShowPlans } from '../../ShowPlans/ShowPlans.jsx';
 
 export const Calendar = () => {
+  const history = useHistory();
   const [selectDate, setSelectDate] = useState(getToday());
   const [isOpen, setIsOpen] = useState(false);
   const [isPlansOpen, setIsPlansOpen] = useState(false);
@@ -19,6 +21,12 @@ export const Calendar = () => {
   const modalDate = useSelector((state) => state.plansList);
   const userId = useSelector((state) => state.userData.id);
 
+  const [userDataFromStore,
+    isVerifyingAuthFromStore,
+  ] = useSelector(({ userData, isVerifyingAuth }) => [userData, isVerifyingAuth]);
+  if (!userDataFromStore && !isVerifyingAuthFromStore) {
+    history.push('/login');
+  }
   return (
     <div className="calendar-container">
       <CalendarHeader selectDate={selectDate} />

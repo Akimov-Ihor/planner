@@ -6,6 +6,7 @@ import {
 } from 'semantic-ui-react';
 
 import './Login.css';
+import { Link } from 'react-router-dom';
 import { login } from '../../store/actionCreators/plannerCreators';
 
 export const Login = () => {
@@ -61,6 +62,9 @@ export const Login = () => {
                   <Button type="submit" color="teal" fluid size="large" onClick={checkForm}>
                     Login
                   </Button>
+                  <Link to="/registration">
+                    Registration
+                  </Link>
                 </Segment>
               </Form>
             </div>

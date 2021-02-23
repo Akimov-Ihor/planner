@@ -22,6 +22,7 @@ require('../routes/getAllUsers.js')(app);
 require('../routes/getUserPlans.js')(app);
 require('../routes/verifyAuth.js')(app);
 require('../routes/login.js')(app);
+require('../routes/registration')(app);
 
 const port = 5000;
 

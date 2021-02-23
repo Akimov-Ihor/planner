@@ -1,17 +1,15 @@
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
-import { con } from '../db';
 import jwtSecret from '../config/jwtConfig';
+import { UserController } from '../controllers/userController';
 
 module.exports = (app) => app.post('/api/login',
-  passport.authenticate('login'), (req, res) => {
+  passport.authenticate('login'), async (req, res) => {
     const { username, password } = req.body;
+
     try {
-      con.query('SELECT * FROM "users" WHERE username = $1 AND password = $2',
-        [username, password],
-        (err, row) => (!err && row.rows.length
-          ? res.json({ userData: row.rows[0], token: jwt.sign({ user: row.rows[0] }, jwtSecret.secret) })
-          : res.status(404).send('User not found')));
+      const userData = await UserController.login({ username, password });
+      res.json({ userData, token: jwt.sign({ user: userData }, jwtSecret.secret) });
     } catch (err) {
       res.status(500).send({ err });
     }

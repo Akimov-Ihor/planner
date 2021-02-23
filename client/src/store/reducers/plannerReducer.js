@@ -23,6 +23,27 @@ export const plannerReducer = (state = initialState, action) => {
         isLoggingIn: false,
       };
     }
+    case types.REGISTRATION_REQUEST: {
+      return {
+        ...state,
+        isLoggingIn: true,
+      };
+    }
+    case types.REGISTRATION_SUCCESS: {
+      const { userData } = action.payload;
+      return {
+        ...state,
+        isLoggingIn: false,
+        userData,
+      };
+    }
+    case types.REGISTRATION_FAILURE: {
+      return {
+        ...state,
+        isLoggingIn: false,
+      };
+    }
+
     case types.VERIFY_AUTH_REQUEST: {
       return {
         ...state,
@@ -71,10 +92,7 @@ export const plannerReducer = (state = initialState, action) => {
     }
     case types.LOGOUT:
     {
-      return {
-        ...state,
-        userData: action.payload,
-      };
+      return initialState;
     }
     default:
       return state;

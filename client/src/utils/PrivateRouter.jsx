@@ -4,7 +4,6 @@ import { Route, Redirect } from 'react-router-dom';
 export const PrivateRoute = ({
   component: Component, userData, isVerifyingAuth, ...rest
 }) => {
-  console.log(userData, isVerifyingAuth);
   return (
     <Route
       {...rest}

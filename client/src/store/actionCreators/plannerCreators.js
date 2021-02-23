@@ -28,6 +28,39 @@ export const login = ({ username, password }, history) => async (dispatch) => {
     });
   }
 };
+export const registration = ({
+  username, email, name, gender, company, age, password,
+}, history) => async (dispatch) => {
+  dispatch({
+    type: types.REGISTRATION_REQUEST,
+  });
+  try {
+    const { data } = await axiosService.post('/registration', {
+      username,
+      password,
+      name,
+      gender,
+      email,
+      company,
+      age,
+      id: createRandomId(),
+    });
+    const { userData, token } = data;
+    localStorage.setItem('token', token);
+    dispatch({
+      type: types.REGISTRATION_SUCCESS,
+      payload: {
+        userData,
+      },
+    });
+    return history.push('/');
+  } catch (e) {
+    return dispatch({
+      type: types.LOGIN_FAILURE,
+      payload: e,
+    });
+  }
+};
 
 export const verifyAuth = () => async (dispatch) => {
   dispatch({
@@ -65,7 +98,6 @@ export const getAllPlans = (userId) => async (dispatch) => {
       headers:
           { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
-    console.log(userPlansData.status);
     if (userPlansData.status !== 404) {
       return dispatch({ type: types.SET_ALL_PLANS, payload: userPlansData.data });
     }
@@ -98,7 +130,10 @@ export const setPlan = ({
 };
 
 export const filterPlan = ({ id, userId }) => async (dispatch) => {
-  await axiosService.delete(`/plan/${id}`, { id });
+  await axiosService.delete(`/plan/${id}`, {
+    headers:
+  { Authorization: `Bearer ${localStorage.getItem('token')}` },
+  }, { id });
   await getAllPlans(userId)(dispatch);
 };
 

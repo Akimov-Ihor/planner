@@ -1,13 +1,11 @@
-import { con } from '../db';
 import { authenticateToken } from '../middleware/verifyToken';
+import { PlanController } from '../controllers/planController';
 
-module.exports = (app) => app.get('/api/plans/:userId', authenticateToken, (req, res) => {
+module.exports = (app) => app.get('/api/plans/:userId', authenticateToken, async (req, res) => {
   try {
-    con.query('SELECT * FROM "plans" WHERE user_id = $1 ',
-      [req.params.userId],
-      (err, data) => (!err && data.rows.length
-        ? res.send(data.rows)
-        : res.status(404).send('Plans not found')));
+    const user_id = req.params.userId;
+    const data = await PlanController.getUserPlans({ user_id });
+    res.send(data);
   } catch (err) {
     res.status(500).send('Something broke!');
   }

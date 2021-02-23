@@ -1,14 +1,11 @@
-import { con } from '../db';
 import { authenticateToken } from '../middleware/verifyToken';
+import { PlanController } from '../controllers/planController';
 
-module.exports = (app) => app.delete('/api/plan/:id', authenticateToken, (req, res) => {
+module.exports = (app) => app.delete('/api/plan/:id', authenticateToken, async (req, res) => {
   try {
-    con.query('DELETE FROM "plans" WHERE id = $1',
-      [req.params.id],
-      // eslint-disable-next-line no-unused-vars
-      (err, data) => (!err
-        ? res.status(200).send({ message: 'Delete Success' })
-        : res.status(404).send({ message: 'Can`t delete plan' })));
+    const { id } = req.params;
+    await PlanController.deletePlan({ id });
+    res.status(200).send({ message: 'Delete Success' });
   } catch (err) {
     res.status(500).send('Something broke!');
   }
