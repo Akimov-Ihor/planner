@@ -8,7 +8,7 @@ import {
 import { Link } from 'react-router-dom';
 import { login } from '../../store/actions/planner.actions';
 import { checkLogin } from '../../utils/validation-utils';
-
+import { constants } from '../../constants/text.constants';
 import './Login.css';
 
 export const Login = () => {
@@ -52,7 +52,8 @@ export const Login = () => {
           <div className="login-wrapper">
             <div className="login-container">
               <Header as="h2" color="teal" textAlign="center">
-                Log-in to your account
+                {constants.login.loginText}
+                {/* Log-in to your account */}
               </Header>
               <Form size="large">
                 <Segment stacked>
@@ -78,12 +79,13 @@ export const Login = () => {
                     error={formsError.password}
                   />
                   <Button type="submit" color="teal" fluid size="medium" onClick={checkForm}>
-                    Login
+                    {constants.login.login}
                   </Button>
                   <div className="login-link-contatiner">
-                    Not a member? &ensp;
+                    {constants.login.member}
+                    &ensp;
                     <Link to="/registration">
-                      Signup Now
+                      {constants.login.signup}
                     </Link>
                   </div>
                 </Segment>

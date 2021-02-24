@@ -11,6 +11,7 @@ import { REGISTRATION_FORM_FIELDS } from './constants/registration.constants';
 import { registration } from '../../store/actions/planner.actions';
 
 import { checkRegistration } from '../../utils/validation-utils';
+import { constants } from '../../constants/text.constants';
 
 export const Registration = () => {
   const [fields, handleFieldChange] = useFormFields({});
@@ -52,7 +53,7 @@ export const Registration = () => {
     <Grid textAlign="center" style={{ height: '100vh' }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" color="teal" textAlign="center">
-          Registration your account
+          {constants.registration.registrationTitle}
         </Header>
         <Form size="large" autoComplete="off">
           <Segment stacked>
@@ -79,11 +80,15 @@ export const Registration = () => {
               size="large"
               onClick={sendRegistrationForm}
             >
-              Registration
+              {constants.registration.registration}
+
             </Button>
-            <Link to="/login">
-              Login
-            </Link>
+            <div>
+              {constants.registration.alreadySignUp}
+              <Link to="/login">
+                {constants.registration.login}
+              </Link>
+            </div>
           </Segment>
         </Form>
       </Grid.Column>
