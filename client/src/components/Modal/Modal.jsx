@@ -4,7 +4,8 @@ import {
   Input, TextArea, Form, Button, Icon,
 } from 'semantic-ui-react';
 
-import { setPlan } from '../../store/actionCreators/plannerCreators';
+import { setPlan } from '../../store/actions/planner.actions';
+
 import './Modal.css';
 
 export const Modal = ({
@@ -30,7 +31,6 @@ export const Modal = ({
       { isOpen
         ? (
           <div className="modal-container">
-
             <div>
               <Form>
                 <div className="modal-title-close">
@@ -42,7 +42,7 @@ export const Modal = ({
                     value={title}
                   />
 
-                  <Button animated="vertical" onClick={() => openCloseModal()}>
+                  <Button animated="vertical" onClick={openCloseModal}>
                     <Button.Content hidden>Close</Button.Content>
                     <Button.Content visible>
                       <Icon name="close" />
@@ -60,7 +60,7 @@ export const Modal = ({
                   <Button
                     animated="vertical"
                     disabled={(title === '' || description === '')}
-                    onClick={() => sentData()}
+                    onClick={sentData}
                   >
                     <Button.Content hidden>Add</Button.Content>
                     <Button.Content visible>

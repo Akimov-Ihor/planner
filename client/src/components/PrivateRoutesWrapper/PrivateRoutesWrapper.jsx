@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Main } from '../Profile/Main/Main.jsx';
 import { Calendar } from '../Profile/Calendar/Calendar.jsx';
 
-import { PrivateRoute } from '../../utils/PrivateRouter.jsx';
+import { PrivateRoute } from './PrivateRoute/PrivateRoute.jsx';
 import { Navbar } from '../Navbar/Navbar.jsx';
 
 export const PrivateRoutesWrapper = () => {

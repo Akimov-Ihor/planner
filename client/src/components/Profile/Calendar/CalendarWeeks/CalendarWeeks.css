@@ -9,3 +9,11 @@
   justify-content: center;
   font-weight: bold;
 }
+
+@media (max-width: 800px) {
+    .calendar-weekday-indicators {
+
+        grid-template-columns: repeat(7, 14%);
+    }
+
+}

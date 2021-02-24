@@ -27,4 +27,5 @@ require('../routes/registration')(app);
 const port = 5000;
 
 con.connect((err) => (err ? console.log('Error connecting to Db') : console.log('Connection established')));
+
 app.listen(port, () => console.log(`Server start on port ${port}`));

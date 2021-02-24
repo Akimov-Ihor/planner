@@ -2,7 +2,10 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../store/actionCreators/plannerCreators';
+
+import { logout } from '../../store/actions/planner.actions';
+
+import './Navbar.css';
 
 export const Navbar = () => {
   const history = useHistory();
@@ -11,7 +14,7 @@ export const Navbar = () => {
   return (
     <>
       <h1>{title}</h1>
-      <nav>
+      <nav className="navbar-nav">
         <ul>
           <li>
             <NavLink to="/">{main}</NavLink>

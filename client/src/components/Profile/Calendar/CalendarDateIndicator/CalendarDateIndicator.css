@@ -39,3 +39,17 @@
 .calendar-non-active-day {
   background-color: rgb(25 24 24 / 25%) ;
 }
+
+
+@media (max-width: 800px) {
+  .calendar-container {
+    height: 100%;
+  }
+  .calendar-date {
+    height: 50%;
+    grid-template-columns: repeat(7, 14%);
+    grid-auto-rows: minmax(14%, 50%)
+  }
+
+
+}

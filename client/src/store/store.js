@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { devToolsEnhancer } from 'redux-devtools-extension';
 
 import { plannerReducer } from './reducers/plannerReducer';
-import { verifyAuth } from './actionCreators/plannerCreators';
+import { verifyAuth } from './actions/planner.actions';
 import { initialState } from './initialState';
 
 const enhancers = [devToolsEnhancer()];

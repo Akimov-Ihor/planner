@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { getToday } from '../../../utils/date-moment';
+import { getToday } from '../../../utils/dateMoment-utils';
 
 import { CalendarHeader } from './CalendarHeader/CalendarHeader.jsx';
 import { CalendarWeeks } from './CalendarWeeks/CalendarsWeeks.jsx';

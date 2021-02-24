@@ -3,7 +3,7 @@ import {
   getReadableMonthDate,
   getReadableWeekday,
   getYear,
-} from '../../../../utils/date-moment';
+} from '../../../../utils/dateMoment-utils';
 import './CalendarHeader.css';
 
 export const CalendarHeader = ({ selectDate }) => {
@@ -13,7 +13,6 @@ export const CalendarHeader = ({ selectDate }) => {
         <h1>{getReadableWeekday(selectDate)}</h1>
         <h1>
           {getReadableMonthDate(selectDate)}
-          {' '}
           {getYear(selectDate)}
         </h1>
       </div>

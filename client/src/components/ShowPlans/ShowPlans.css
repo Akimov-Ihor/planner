@@ -34,5 +34,12 @@
   text-overflow: ellipsis;
   word-wrap: break-word;
   margin-bottom: 0%;
+}
+
+@media (max-width: 800px) {
+  .show-plans-container{
+    height: 25%;
+    width: 79%;
+  }
 
 }

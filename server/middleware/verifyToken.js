@@ -9,8 +9,11 @@ export const authenticateToken = (req, res, next) => {
   return jwt.verify(token, process.env.ACCESS_TOKEN_SECRET,
     (err, data) => {
       if (err) return res.sendStatus(403);
-      const { password, ...userData } = data.user;
-      req.userData = userData;
+      if (data.user.password) {
+        const { password, ...userData } = data.user;
+        req.userData = userData;
+      }
+
       return next(); // pass the execution off to whatever request the client intended
     });
 };

@@ -5,9 +5,11 @@ import {
   Button, Form, Header, Segment,
 } from 'semantic-ui-react';
 
-import './Login.css';
 import { Link } from 'react-router-dom';
-import { login } from '../../store/actionCreators/plannerCreators';
+import { login } from '../../store/actions/planner.actions';
+import { checkLogin } from '../../utils/validation-utils';
+
+import './Login.css';
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -15,7 +17,10 @@ export const Login = () => {
 
   const [username, setLogin] = useState('');
   const [password, setPassword] = useState('');
-  const [userFromState, isVerifyingFromStore] = useSelector(({ userData, isVerifyingAuth }) => [userData, isVerifyingAuth]);
+  const [formsError, setFormsErrors] = useState({});
+  const [userFromState, isVerifyingFromStore] = useSelector(
+    ({ userData, isVerifyingAuth }) => [userData, isVerifyingAuth],
+  );
 
   useEffect(() => {
     if (userFromState && !isVerifyingFromStore) {
@@ -23,11 +28,20 @@ export const Login = () => {
     }
   });
 
-  const checkForm = async (event) => {
-    event.preventDefault();
-    await login({
-      username, password,
-    }, history)(dispatch);
+  const checkForm = async () => {
+    await checkLogin({ username, password }).catch((err) => {
+      const arrObj = err.inner.reduce((acc, current) => {
+        // eslint-disable-next-line no-param-reassign
+        acc[current.path] = current.message;
+        return acc;
+      }, {});
+      setFormsErrors(arrObj);
+    });
+    if (Object.keys(formsError).length === 0 && username !== '' && password !== '') {
+      await login({
+        username, password,
+      }, history)(dispatch);
+    }
   };
 
   return (
@@ -48,7 +62,9 @@ export const Login = () => {
                     iconPosition="left"
                     placeholder="E-mail address"
                     onChange={(e) => setLogin(e.target.value)}
+                    name="user"
                     value={username}
+                    error={formsError.username}
                   />
                   <Form.Input
                     fluid
@@ -56,15 +72,20 @@ export const Login = () => {
                     iconPosition="left"
                     placeholder="Password"
                     type="password"
+                    name="password"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
+                    error={formsError.password}
                   />
-                  <Button type="submit" color="teal" fluid size="large" onClick={checkForm}>
+                  <Button type="submit" color="teal" fluid size="medium" onClick={checkForm}>
                     Login
                   </Button>
-                  <Link to="/registration">
-                    Registration
-                  </Link>
+                  <div className="login-link-contatiner">
+                    Not a member? &ensp;
+                    <Link to="/registration">
+                      Signup Now
+                    </Link>
+                  </div>
                 </Segment>
               </Form>
             </div>

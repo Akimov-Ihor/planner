@@ -6,10 +6,13 @@ export const getPrevMonthYear = (month, year) => {
     year: month === 1 ? year - 1 : year,
   };
 };
+
 export const getNextMonthYear = (month, year) => {
+  const isFebruary = month === 1;
+  const isDecember = month === 11;
   return {
-    month: month === 1 ? month + 1 : 12,
-    year: month === 1 || 12 ? year : year + 1,
+    month: isFebruary ? month + 1 : 12,
+    year: isFebruary || isDecember ? year : year + 1,
   };
 };
 

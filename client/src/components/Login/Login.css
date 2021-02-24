@@ -8,4 +8,17 @@
 .login-container{
   width:  37%;
 }
-    
+.login-link-contatiner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 15px;
+  font-size: 15px;
+  color: black;
+}
+
+@media (max-width : 625px) {
+  .login-container {
+    width: 76%;
+  }
+}

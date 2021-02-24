@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Icon } from 'semantic-ui-react';
-import { filterPlan } from '../../store/actionCreators/plannerCreators';
+import { filterPlan } from '../../store/actions/planner.actions';
 import './ShowPlans.css';
 
 export const ShowPlans = ({
@@ -9,15 +9,9 @@ export const ShowPlans = ({
 }) => {
   const closePlans = () => setIsPlansOpen(!isPlansOpen);
   const dispatch = useDispatch();
-  // const plansList = useSelector((state) => state.plansList);
-  // const plannsCopy = [...plansList];
 
   const deletePlan = async () => {
-    // const id = plannsCopy.find(() => currentPlans.id);
-    // eslint-disable-next-line prefer-destructuring
-    const id = currentPlans.id;
-    // console.log(currentPlans, id);
-    // console.log(currentPlans.id);
+    const { id } = currentPlans;
     await filterPlan({ id, userId })(dispatch);
     closePlans();
   };
@@ -32,16 +26,14 @@ export const ShowPlans = ({
                 <span>Title:</span>
                 {`${currentPlans.title}`}
               </div>
-
               <div className="show-plans-container-description">
                 <span>
                   Description:
                 </span>
                 {`${currentPlans.description}`}
               </div>
-
               <div className="modal-button">
-                <Button animated="vertical" onClick={() => closePlans()}>
+                <Button animated="vertical" onClick={closePlans}>
                   <Button.Content hidden>Close</Button.Content>
                   <Button.Content visible>
                     <Icon name="close" />

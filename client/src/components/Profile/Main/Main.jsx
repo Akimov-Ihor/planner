@@ -10,8 +10,7 @@ export const Main = () => {
   const user = useSelector((state) => state.userData);
   const [name, email, age, gender, company] = ['Name:', 'Email:', 'Age:', 'Gender:', 'Company:'];
   useEffect(() => {
-    console.log(user == null);
-    if (user == null) {
+    if (!user) {
       history.push('/');
     }
   });
@@ -51,5 +50,6 @@ export const Main = () => {
         </div>
       </div>
     </div>
+
   );
 };

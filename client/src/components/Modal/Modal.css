@@ -10,6 +10,7 @@
   flex-direction: column;
   align-items: center;
 }
+
 .modal-container > div {
   display: flex;
   justify-content: center;
@@ -20,14 +21,17 @@
   background: #020202ab;
   color: #e8f0fe;
 }
+
 .modal-title-close{
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .modal-title-close div {
   width: 75%;
 }
+
 .modal-button button,
 .modal-title-close button {
   width: 22%;
@@ -40,4 +44,11 @@
   height: 100px;
   max-height: 141px;
   min-height: 100px
+}
+
+@media (max-width: 800px) {
+  .modal-container > div {
+    height: 35%;
+    width: 86%;
+  }
 }

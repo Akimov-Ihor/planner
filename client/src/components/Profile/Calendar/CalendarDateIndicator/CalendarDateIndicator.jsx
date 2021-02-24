@@ -1,17 +1,20 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { PlannCard } from '../../../PlannCard/PlannCard.jsx';
+
 import {
   getDayOfMonth,
   getMonth,
   getYear,
   getMonthDayYear,
   getYesterdayFromToday,
-} from '../../../../utils/date-moment';
-
+} from '../../../../utils/dateMoment-utils';
 import { getDatesInMonthDisplay } from '../../../../utils/date-utils';
-import { PlannCard } from '../../../PlannCard/PlannCard.jsx';
+
+import { getAllPlans } from '../../../../store/actions/planner.actions';
+
 import './CalendarDateIndicator.css';
-import { getAllPlans } from '../../../../store/actionCreators/plannerCreators';
 
 export const CalendarDateIndicator = ({
   selectDate, setSelectDate, setIsOpen, isOpen, modalDate, isPlansOpen, setIsPlansOpen, setCurrentPlans,
@@ -42,9 +45,11 @@ export const CalendarDateIndicator = ({
     setCurrentPlans(data);
     setIsPlansOpen(!isPlansOpen);
   };
+
   const activeDay = (data) => {
     return getYesterdayFromToday() < data;
   };
+
   return (
     <div className="calendar-date">
       {
@@ -53,6 +58,7 @@ export const CalendarDateIndicator = ({
           <div
             key={`${key + i.date + i.currentMonth}`}
             style={activeDay(i.date) ? { cursor: 'pointer' } : { cursor: 'default' }}
+            onClick={() => (activeDay(i.date) ? changeDate(i.date.toString()) : false)}
             className={
               `calendar-date-indicator ${i.currentMonth ? 'active' : 'non-active'} 
               ${i.date.toString() === selectDate
@@ -68,34 +74,30 @@ export const CalendarDateIndicator = ({
               data-active-month={i.currentMonth}
               data-date={i.date}
               key={key}
-              onClick={activeDay(i.date) ? () => changeDate(i.date.toString()) : null}
+
             >
               {getDayOfMonth(i.date)}
             </div>
             <div
               className="calendar-date-indicator-plans"
               key={`${key + i.date} `}
-
             >
               {
-                  modalDate.length
-                    ? modalDate.map((obj, idx) => {
-                      return (
-                        getMonthDayYear(obj.date).toString() === getMonthDayYear(i.date).toString()
-                          ? (
-                            <PlannCard
-                              openPlans={openPlans}
-                              obj={obj}
-                              key={idx}
-                              title={obj.title}
-                              description={obj.description}
-                            />
-                          )
-                          : ''
-                      );
-                    })
-                    : ''
-                }
+                modalDate.length ? modalDate.map((obj, idx) => {
+                  return (
+                    getMonthDayYear(obj.date).toString() === getMonthDayYear(i.date).toString()
+                      ? (
+                        <PlannCard
+                          openPlans={openPlans}
+                          obj={obj}
+                          key={idx}
+                          title={obj.title}
+                          description={obj.description}
+                        />
+                      ) : null
+                  );
+                }) : null
+              }
             </div>
           </div>
         );

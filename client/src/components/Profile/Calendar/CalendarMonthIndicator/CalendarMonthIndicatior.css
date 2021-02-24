@@ -4,8 +4,8 @@
   display: flex;
   justify-content: space-evenly;
   align-items: baseline
-  
 }
+
 .callendar-month-indicator div {
   display: flex;
   align-items: center;
@@ -14,11 +14,10 @@
   cursor: pointer;
   outline: none;
   user-select: none
-
 }
-.callendar-month-indicator{
-  font-size: 2rem!important;
-  cursor: default!important;
-  font-weight: bold
 
+.callendar-month-indicator{
+  font-size: 2rem !important;
+  cursor: default !important;
+  font-weight: bold
 }

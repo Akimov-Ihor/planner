@@ -1,12 +1,15 @@
+import { toast } from 'react-toastify';
+
 import { axiosService } from '../../services/api';
 import * as types from '../actionsTypes/plannerTypes';
-import { createRandomId } from '../../utils/createRandomId';
-import { getMonthDayYear } from '../../utils/date-moment';
+import { generateRandomId } from '../../utils/randomId-utils';
+import { getMonthDayYear } from '../../utils/dateMoment-utils';
 
 export const login = ({ username, password }, history) => async (dispatch) => {
   dispatch({
     type: types.LOGIN_REQUEST,
   });
+
   try {
     const { data } = await axiosService.post('/login', {
       username,
@@ -14,6 +17,15 @@ export const login = ({ username, password }, history) => async (dispatch) => {
     });
     const { userData, token } = data;
     localStorage.setItem('token', token);
+    toast.success('🚀 LOGIN SUCCESS', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
     dispatch({
       type: types.LOGIN_SUCCESS,
       payload: {
@@ -22,12 +34,22 @@ export const login = ({ username, password }, history) => async (dispatch) => {
     });
     return history.push('/');
   } catch (e) {
+    toast.error(`${e}`, {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
     return dispatch({
       type: types.LOGIN_FAILURE,
       payload: e,
     });
   }
 };
+
 export const registration = ({
   username, email, name, gender, company, age, password,
 }, history) => async (dispatch) => {
@@ -43,7 +65,7 @@ export const registration = ({
       email,
       company,
       age,
-      id: createRandomId(),
+      id: generateRandomId(),
     });
     const { userData, token } = data;
     localStorage.setItem('token', token);
@@ -115,13 +137,22 @@ export const setPlan = ({
       title,
       description,
       date: getMonthDayYear(selectDate).toString(),
-      id: createRandomId(),
+      id: generateRandomId(),
       user_id: userId,
     };
 
     await axiosService.post('/plans', plan, {
       headers:
           { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    });
+    toast.info('🔥 ADD NEW PLAN', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
     });
     return await getAllPlans(userId)(dispatch);
   } catch (e) {
@@ -133,7 +164,16 @@ export const filterPlan = ({ id, userId }) => async (dispatch) => {
   await axiosService.delete(`/plan/${id}`, {
     headers:
   { Authorization: `Bearer ${localStorage.getItem('token')}` },
-  }, { id });
+  });
+  toast.warn('🗑 PLAN DELETED', {
+    position: 'top-right',
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
   await getAllPlans(userId)(dispatch);
 };
 
