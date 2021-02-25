@@ -1,5 +1,5 @@
 import { con } from '../db';
-import { checkPassword } from '../routes/crypt';
+import { checkPassword } from '../utils/crypt';
 
 export class UserController {
   static async getAllUsers() {

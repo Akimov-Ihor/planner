@@ -1,4 +1,6 @@
 import { con } from '../db';
+import { plansRouter } from '../routes/plans/plansRouter';
+import { usersRouter } from '../routes/users/usersRouter';
 
 const express = require('express');
 const cors = require('cors');
@@ -15,14 +17,8 @@ app.options('*', cors());
 app.use(bodyParser.json());
 app.use(passport.initialize());
 
-require('../routes/addPlan.js')(app);
-require('../routes/deletePlan.js')(app);
-require('../routes/getAllPlans.js')(app);
-require('../routes/getAllUsers.js')(app);
-require('../routes/getUserPlans.js')(app);
-require('../routes/verifyAuth.js')(app);
-require('../routes/login.js')(app);
-require('../routes/registration')(app);
+app.use('/api', plansRouter);
+app.use('/api', usersRouter);
 
 const port = 5000;
 

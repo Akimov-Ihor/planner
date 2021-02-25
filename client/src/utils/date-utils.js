@@ -23,7 +23,7 @@ export const getNextMonthYear = (month, year) => {
 
   return {
     month: 12,
-    year: year + 1,
+    year,
   };
 };
 
