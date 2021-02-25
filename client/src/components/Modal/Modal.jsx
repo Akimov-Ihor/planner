@@ -5,6 +5,7 @@ import {
 } from 'semantic-ui-react';
 
 import { setPlan } from '../../store/actions/planner.actions';
+import { constants } from '../../constants/text.constants';
 
 import './Modal.css';
 
@@ -43,7 +44,7 @@ export const Modal = ({
                   />
 
                   <Button animated="vertical" onClick={openCloseModal}>
-                    <Button.Content hidden>Close</Button.Content>
+                    <Button.Content hidden>{constants.modal.close}</Button.Content>
                     <Button.Content visible>
                       <Icon name="close" />
                     </Button.Content>
@@ -62,7 +63,7 @@ export const Modal = ({
                     disabled={(title === '' || description === '')}
                     onClick={sentData}
                   >
-                    <Button.Content hidden>Add</Button.Content>
+                    <Button.Content hidden>{constants.modal.add}</Button.Content>
                     <Button.Content visible>
                       <Icon name="add" />
                     </Button.Content>

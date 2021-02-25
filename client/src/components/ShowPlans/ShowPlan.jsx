@@ -2,35 +2,35 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Icon } from 'semantic-ui-react';
 import { filterPlan } from '../../store/actions/planner.actions';
-import './ShowPlans.css';
+import './ShowPlan.css';
 
-export const ShowPlans = ({
-  isPlansOpen, currentPlans, setIsPlansOpen, userId,
+export const ShowPlan = ({
+  isPlanOpen, currentPlan, setIsPlanOpen, userId,
 }) => {
-  const closePlans = () => setIsPlansOpen(!isPlansOpen);
+  const closePlans = () => setIsPlanOpen(!isPlanOpen);
   const dispatch = useDispatch();
 
   const deletePlan = async () => {
-    const { id } = currentPlans;
+    const { id } = currentPlan;
     await filterPlan({ id, userId })(dispatch);
     closePlans();
   };
 
   return (
     <>
-      { isPlansOpen
+      { isPlanOpen
         ? (
           <div className="show-plans-wrapper">
             <div className="show-plans-container">
               <div>
                 <span>Title:</span>
-                {`${currentPlans.title}`}
+                {`${currentPlan.title}`}
               </div>
               <div className="show-plans-container-description">
                 <span>
                   Description:
                 </span>
-                {`${currentPlans.description}`}
+                {`${currentPlan.description}`}
               </div>
               <div className="modal-button">
                 <Button animated="vertical" onClick={closePlans}>
@@ -39,7 +39,7 @@ export const ShowPlans = ({
                     <Icon name="close" />
                   </Button.Content>
                 </Button>
-                <Button animated="vertical" onClick={() => deletePlan(currentPlans)}>
+                <Button animated="vertical" onClick={() => deletePlan(currentPlan)}>
                   <Button.Content hidden>Delete</Button.Content>
                   <Button.Content visible>
                     <Icon name="delete" />

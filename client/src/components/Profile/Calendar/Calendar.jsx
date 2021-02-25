@@ -9,14 +9,14 @@ import { CalendarDateIndicator } from './CalendarDateIndicator/CalendarDateIndic
 import { CalendarMonthIndicator } from './CalendarMonthIndicator/CalendarMonthIndicator.jsx';
 
 import { Modal } from '../../Modal/Modal.jsx';
-import { ShowPlans } from '../../ShowPlans/ShowPlans.jsx';
+import { ShowPlan } from '../../ShowPlans/ShowPlan.jsx';
 
 export const Calendar = () => {
   const history = useHistory();
   const [selectDate, setSelectDate] = useState(getToday());
   const [isOpen, setIsOpen] = useState(false);
-  const [isPlansOpen, setIsPlansOpen] = useState(false);
-  const [currentPlans, setCurrentPlans] = useState(null);
+  const [isPlanOpen, setIsPlanOpen] = useState(false);
+  const [currentPlan, setCurrentPlan] = useState(null);
 
   const modalDate = useSelector((state) => state.plansList);
   const userId = useSelector((state) => state.userData.id);
@@ -37,9 +37,9 @@ export const Calendar = () => {
         setIsOpen={setIsOpen}
         isOpen={isOpen}
         modalDate={modalDate}
-        isPlansOpen={isPlansOpen}
-        setIsPlansOpen={setIsPlansOpen}
-        setCurrentPlans={setCurrentPlans}
+        isPlanOpen={isPlanOpen}
+        setIsPlanOpen={setIsPlanOpen}
+        setCurrentPlan={setCurrentPlan}
       />
       <CalendarMonthIndicator
         selectDate={selectDate}
@@ -51,11 +51,11 @@ export const Calendar = () => {
         selectDate={selectDate}
         userId={userId}
       />
-      <ShowPlans
-        isPlansOpen={isPlansOpen}
+      <ShowPlan
+        isPlanOpen={isPlanOpen}
         modalDate={modalDate}
-        currentPlans={currentPlans}
-        setIsPlansOpen={setIsPlansOpen}
+        currentPlan={currentPlan}
+        setIsPlanOpen={setIsPlanOpen}
         userId={userId}
       />
     </div>

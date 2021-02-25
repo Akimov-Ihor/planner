@@ -1,12 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Icon } from 'semantic-ui-react';
 
 import { getMonth, getSpecificDate, getYear } from '../../../../utils/dateMoment-utils';
 import './CalendarMonthIndicatior.css';
+import { constants } from '../../../../constants/text.constants';
 
 export const CalendarMonthIndicator = ({ selectDate, setSelectDate }) => {
-  const monthsFull = useSelector((state) => state.monthsFull);
   const changeMonth = (e) => setSelectDate(e.target.getAttribute('data-date'));
 
   const getMonthSet = (newSelectedDate) => {
@@ -34,14 +33,14 @@ export const CalendarMonthIndicator = ({ selectDate, setSelectDate }) => {
       <div>
         <Icon name="chevron left" />
         <div data-date={monthSet.prev} onClick={changeMonth}>
-          {monthsFull[getMonth(monthSet.prev)]}
+          {constants.monthsFull[getMonth(monthSet.prev)]}
         </div>
 
       </div>
-      <div className="callendar-month-indicator">{monthsFull[getMonth(monthSet.current)]}</div>
+      <div className="callendar-month-indicator">{constants.monthsFull[getMonth(monthSet.current)]}</div>
       <div>
         <div data-date={monthSet.next} onClick={changeMonth}>
-          {monthsFull[getMonth(monthSet.next)]}
+          {constants.monthsFull[getMonth(monthSet.next)]}
         </div>
         <Icon name="chevron right" />
       </div>

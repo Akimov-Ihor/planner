@@ -17,7 +17,7 @@ import { getAllPlans } from '../../../../store/actions/planner.actions';
 import './CalendarDateIndicator.css';
 
 export const CalendarDateIndicator = ({
-  selectDate, setSelectDate, setIsOpen, isOpen, modalDate, isPlansOpen, setIsPlansOpen, setCurrentPlans,
+  selectDate, setSelectDate, setIsOpen, isOpen, modalDate, isPlanOpen, setIsPlanOpen, setCurrentPlan,
 }) => {
   const userId = useSelector((state) => state.userData.id);
   const dispatch = useDispatch();
@@ -41,14 +41,20 @@ export const CalendarDateIndicator = ({
     getYear(selectDate),
   );
 
-  const openPlans = (data) => {
-    setCurrentPlans(data);
-    setIsPlansOpen(!isPlansOpen);
+  const openPlan = (data) => {
+    setCurrentPlan(data);
+    setIsPlanOpen(!isPlanOpen);
   };
 
-  const activeDay = (data) => {
-    return getYesterdayFromToday() < data;
-  };
+  const isChosen = (i) => (i.date.toString() === selectDate ? 'chosenDay' : 'others');
+  const isActiveDay = (data) => (getYesterdayFromToday() < data ? 'calendar-active-day' : 'calendar-non-active-day');
+  const isCurrentMonth = (currentMonth) => (currentMonth ? 'active' : 'non-active');
+  const activeDay = (data) => getYesterdayFromToday() < data;
+
+  const compareDate = (plan, day) => getMonthDayYear(plan.date).toString() === getMonthDayYear(day.date).toString();
+  const activeDayCursor = (data) => (getYesterdayFromToday() < data ? 'pointer' : 'default');
+
+  const changeActiveDate = (date) => (activeDay(date) ? changeDate(date.toString()) : false);
 
   return (
     <div className="calendar-date">
@@ -57,16 +63,13 @@ export const CalendarDateIndicator = ({
         return (
           <div
             key={`${key + i.date + i.currentMonth}`}
-            style={activeDay(i.date) ? { cursor: 'pointer' } : { cursor: 'default' }}
-            onClick={() => (activeDay(i.date) ? changeDate(i.date.toString()) : false)}
+            style={{ cursor: activeDayCursor(i.date) }}
+            onClick={() => changeActiveDate(i.date)}
             className={
-              `calendar-date-indicator ${i.currentMonth ? 'active' : 'non-active'} 
-              ${i.date.toString() === selectDate
-                ? 'chosenDay'
-                : 'others'} 
-              ${activeDay(i.date)
-                  ? 'calendar-active-day'
-                  : 'calendar-non-active-day'} `
+              `calendar-date-indicator 
+              ${isCurrentMonth} 
+              ${isChosen(i)} 
+              ${isActiveDay(i.date)} `
             }
           >
             <div
@@ -74,7 +77,6 @@ export const CalendarDateIndicator = ({
               data-active-month={i.currentMonth}
               data-date={i.date}
               key={key}
-
             >
               {getDayOfMonth(i.date)}
             </div>
@@ -83,20 +85,21 @@ export const CalendarDateIndicator = ({
               key={`${key + i.date} `}
             >
               {
-                modalDate.length ? modalDate.map((obj, idx) => {
-                  return (
-                    getMonthDayYear(obj.date).toString() === getMonthDayYear(i.date).toString()
-                      ? (
-                        <PlannCard
-                          openPlans={openPlans}
-                          obj={obj}
-                          key={idx}
-                          title={obj.title}
-                          description={obj.description}
-                        />
-                      ) : null
-                  );
-                }) : null
+                modalDate.length
+                  ? modalDate.map((obj, idx) => {
+                    return (
+                      compareDate(obj, i)
+                        ? (
+                          <PlannCard
+                            openPlans={openPlan}
+                            obj={obj}
+                            key={idx}
+                            title={obj.title}
+                            description={obj.description}
+                          />
+                        ) : null
+                    );
+                  }) : null
               }
             </div>
           </div>
