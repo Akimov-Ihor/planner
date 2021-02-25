@@ -20,7 +20,7 @@ app.use(passport.initialize());
 app.use('/api', plansRouter);
 app.use('/api', usersRouter);
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 con.connect((err) => (err ? console.log('Error connecting to Db') : console.log('Connection established')));
 
