@@ -19,7 +19,7 @@
 .show-plans-container span{
   color:#d5d0ffc4;
   margin-right: 2%;
-  font-weight: bold;
+  /*font-weight: bold;*/
   font-size: 20px;
 }
 .show-plans-container > div {

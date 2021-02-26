@@ -2,6 +2,9 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Icon } from 'semantic-ui-react';
 import { filterPlan } from '../../store/actions/planner.actions';
+
+import { TextEditor } from '../TextEditor/TextEditor.jsx';
+
 import './ShowPlan.css';
 
 export const ShowPlan = ({
@@ -30,7 +33,8 @@ export const ShowPlan = ({
                 <span>
                   Description:
                 </span>
-                {`${currentPlan.description}`}
+                <TextEditor description={currentPlan.description} />
+                {/* {`${currentPlan.description}`} */}
               </div>
               <div className="modal-button">
                 <Button animated="vertical" onClick={closePlans}>
