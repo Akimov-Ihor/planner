@@ -14,6 +14,17 @@ export class PlanController {
     }
   }
 
+  static async editPlan(title, description, id) {
+    try {
+      console.log(title, description, id, '');
+      // await con.query('UPDATE "plans" SET description = $1 WHERE id = $2 ',
+      await con.query('UPDATE "plans" SET  title = $1,description =$2::json   WHERE id = $3 ',
+        [title, JSON.stringify(description), id]);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
   static async deletePlan({ id }) {
     try {
       await con.query('DELETE FROM "plans" WHERE id = $1',

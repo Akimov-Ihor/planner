@@ -176,6 +176,29 @@ export const filterPlan = ({ id, userId }) => async (dispatch) => {
   });
   await getAllPlans(userId)(dispatch);
 };
+export const editPlan = ({
+  title, description, id, userId,
+}) => async (dispatch) => {
+  // const body = {
+  //   title, description: description.value, id, userId,
+  // };
+  await axiosService.post(`/plan/${id}`, {
+    headers:
+        { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    body: { title, description: description.map((elem) => JSON.stringify(elem)), id },
+
+  });
+  toast.warn('🗑 PLAN EDIT', {
+    position: 'top-right',
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+  await getAllPlans(userId)(dispatch);
+};
 
 export const logout = (history) => async (dispatch) => {
   dispatch({ type: types.LOGOUT, payload: null });

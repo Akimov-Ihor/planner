@@ -41,9 +41,10 @@ export const CalendarDateIndicator = ({
     getYear(selectDate),
   );
 
-  const openPlan = (data) => {
+  const openPlan = async (data) => {
     setCurrentPlan(data);
     setIsPlanOpen(!isPlanOpen);
+    // setTimeout(setIsPlanOpen(!isPlanOpen), 100);
   };
 
   const isChosen = (i) => (i.date.toString() === selectDate ? 'chosenDay' : 'others');

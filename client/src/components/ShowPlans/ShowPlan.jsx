@@ -1,22 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Icon } from 'semantic-ui-react';
-import { filterPlan } from '../../store/actions/planner.actions';
-
+// import { Node } from 'slate';
+import { editPlan, filterPlan } from '../../store/actions/planner.actions';
 import { TextEditor } from '../TextEditor/TextEditor.jsx';
 
 import './ShowPlan.css';
 
 export const ShowPlan = ({
   isPlanOpen, currentPlan, setIsPlanOpen, userId,
+  // setCurrentPlan,
 }) => {
-  const closePlans = () => setIsPlanOpen(!isPlanOpen);
   const dispatch = useDispatch();
+  const { id, title } = currentPlan;
 
+  const startValue = () => {
+    if (Object.keys(currentPlan).length) {
+      return JSON.parse(currentPlan.description).map((a) => JSON.parse(a));
+    }
+    return [{ children: [{ text: '.' }] }];
+  };
+
+  const [value, setValue] = useState(startValue());
+
+  useEffect(() => {
+  }, [currentPlan]);
+
+  const closePlans = async () => {
+    await editPlan({
+      title, description: value, id, userId,
+    })(dispatch);
+    setIsPlanOpen(!isPlanOpen);
+  };
   const deletePlan = async () => {
-    const { id } = currentPlan;
     await filterPlan({ id, userId })(dispatch);
-    closePlans();
+    await closePlans();
   };
 
   return (
@@ -33,7 +51,10 @@ export const ShowPlan = ({
                 <span>
                   Description:
                 </span>
-                <TextEditor description={currentPlan.description} />
+                <TextEditor
+                  value={value}
+                  setValue={setValue}
+                />
                 {/* {`${currentPlan.description}`} */}
               </div>
               <div className="modal-button">

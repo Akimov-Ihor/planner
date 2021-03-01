@@ -1,26 +1,13 @@
 /* eslint-disable */
-import React, { useMemo, useState, useCallback,useEffect } from 'react';
-import { createEditor, Transforms } from 'slate';
+import React, { useMemo,  useCallback } from 'react';
+import {createEditor,} from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
 
-import {TextEditorButtons} from "./TextEditorButtons/TextEditorButton";
+import {TextEditorButtons} from "./TextEditorButtons/TextEditorButton.jsx";
 
 
-export const TextEditor = ({ description }) => {
+export const TextEditor = ({ value,setValue}) => {
   const editor = useMemo(() => withReact(createEditor()), [])
-  const [value, setValue] = useState([
-    {
-      type: 'paragraph',
-      children: [{ text: `${description}` }],
-    },
-  ])
-
-    useEffect(() => {
-        if (!value ) {
-            Transforms.deselect(editor);
-        }
-    }, [value])
-
 
   const renderElement = useCallback(props => {
     switch (props.element.type) {
@@ -42,19 +29,24 @@ export const TextEditor = ({ description }) => {
   }, [])
 
   return (
-      <Slate editor={editor} value={value} onChange={value => setValue(value)}>
-        <TextEditorButtons editor={editor}/>
-        <Editable
-            renderElement={renderElement}
-            renderLeaf={renderLeaf}
-        />
-      </Slate>
+          <Slate
+              editor={editor}
+              value={value}
+              onChange={value => setValue(value)}
+              >
+              <TextEditorButtons editor={editor}/>
+              <Editable
+                  renderElement={renderElement}
+                  renderLeaf={renderLeaf}
+              />
+          </Slate>
   )
 }
 
 
 
 const CodeElement = (props) => {
+    console.log(props)
   return (
       <pre {...props.attributes}>
       <code>{props.children}</code>
@@ -90,7 +82,6 @@ const DefaultElement = (props) => {
 };
 
 const Leaf = ({ attributes, children, leaf })=> {
-    console.log(leaf)
     if (leaf.bold) {
         children = <strong>{children}</strong>
     }

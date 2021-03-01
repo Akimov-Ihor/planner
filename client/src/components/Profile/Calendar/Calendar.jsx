@@ -16,7 +16,8 @@ export const Calendar = () => {
   const [selectDate, setSelectDate] = useState(getToday());
   const [isOpen, setIsOpen] = useState(false);
   const [isPlanOpen, setIsPlanOpen] = useState(false);
-  const [currentPlan, setCurrentPlan] = useState(null);
+  const [currentPlan, setCurrentPlan] = useState({
+  });
 
   const modalDate = useSelector((state) => state.plansList);
   const userId = useSelector((state) => state.userData.id);
@@ -29,7 +30,9 @@ export const Calendar = () => {
   }
   return (
     <div className="calendar-container">
-      <CalendarHeader selectDate={selectDate} />
+      <CalendarHeader
+        selectDate={selectDate}
+      />
       <CalendarWeeks />
       <CalendarDateIndicator
         selectDate={selectDate}
@@ -51,13 +54,16 @@ export const Calendar = () => {
         selectDate={selectDate}
         userId={userId}
       />
-      <ShowPlan
-        isPlanOpen={isPlanOpen}
-        modalDate={modalDate}
-        currentPlan={currentPlan}
-        setIsPlanOpen={setIsPlanOpen}
-        userId={userId}
-      />
+      {currentPlan !== undefined && Object.keys(currentPlan).length ? (
+        <ShowPlan
+          isPlanOpen={isPlanOpen}
+          modalDate={modalDate}
+          currentPlan={currentPlan}
+          setIsPlanOpen={setIsPlanOpen}
+          setCurrentPlan={setCurrentPlan}
+          userId={userId}
+        />
+      ) : null}
     </div>
   );
 };
