@@ -36,6 +36,15 @@ export const customEditor = {
       { match: (n) => Editor.isBlock(editor, n) },
     );
   },
+  toggleListMark(editor) {
+    const isActive = isEditorActive.isListMarkActive(editor);
+    Transforms.setNodes(
+      editor,
+      { type: isActive ? null : 'list' },
+      { match: (n) => Editor.isBlock(editor, n) },
+    );
+  },
+
   toggleItalicMark(editor) {
     const isActive = isEditorActive.isItalicMarkActive(editor);
     Transforms.setNodes(

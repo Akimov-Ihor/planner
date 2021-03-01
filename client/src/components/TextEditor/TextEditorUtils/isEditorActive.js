@@ -45,4 +45,10 @@ export const isEditorActive = {
     });
     return !!match;
   },
+  isListMarkActive(editor) {
+    const [match] = Editor.nodes(editor, {
+      match: (n) => n.type === 'list',
+    });
+    return !!match;
+  },
 };

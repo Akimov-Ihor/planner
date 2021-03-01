@@ -1,10 +1,12 @@
-import { Icon } from 'semantic-ui-react';
 import React from 'react';
-import { customEditor } from '../editorUtils/customEditor';
+import { Icon } from 'semantic-ui-react';
+import { customEditor } from '../TextEditorUtils/customEditor';
+
+import './TextEditorButton.css';
 
 export const TextEditorButtons = ({ editor }) => {
   return (
-    <div>
+    <div className="editorButtonWrapper">
       <button type="button">
         <Icon
           name="bold"
@@ -57,6 +59,15 @@ export const TextEditorButtons = ({ editor }) => {
           onClick={(event) => {
             event.preventDefault();
             customEditor.toggleHeadingOneMark(editor);
+          }}
+        />
+      </button>
+      <button type="button">
+        <Icon
+          name="list"
+          onClick={(event) => {
+            event.preventDefault();
+            customEditor.toggleListMark(editor);
           }}
         />
       </button>

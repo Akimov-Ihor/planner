@@ -1,14 +1,9 @@
 /* eslint-disable */
 import React, { useMemo, useState, useCallback,useEffect } from 'react';
 import { createEditor, Transforms } from 'slate';
-
 import { Slate, Editable, withReact } from 'slate-react';
 
 import {TextEditorButtons} from "./TextEditorButtons/TextEditorButton";
-
-
-
-
 
 
 export const TextEditor = ({ description }) => {
@@ -35,6 +30,8 @@ export const TextEditor = ({ description }) => {
             return <BlockquoteElement {...props}/>
         case 'headingOne':
             return <HeaderOneElement {...props}/>
+        case 'list':
+            return <ListElement{...props} />
       default:
         return <DefaultElement {...props} />
     }
@@ -74,9 +71,18 @@ const BlockquoteElement = (props) => {
 const HeaderOneElement = (props) => {
     return (
         <h1 {...props.attributes}>
-      <span>{props.children}</span>
-    </h1>
+            <div>{props.children}</div>
+        </h1>
     );
+}
+const ListElement = ( props ) => {
+    return (
+     <ul {...props.attributes}>
+         <li>
+             {props.children}
+         </li>
+      </ul>
+    )
 }
 
 const DefaultElement = (props) => {
@@ -84,6 +90,7 @@ const DefaultElement = (props) => {
 };
 
 const Leaf = ({ attributes, children, leaf })=> {
+    console.log(leaf)
     if (leaf.bold) {
         children = <strong>{children}</strong>
     }
@@ -93,6 +100,5 @@ const Leaf = ({ attributes, children, leaf })=> {
     if (leaf.underline) {
         children = <u>{children}</u>
     }
-
     return <span {...attributes}>{children}</span>
 }
