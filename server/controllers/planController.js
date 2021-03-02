@@ -16,7 +16,7 @@ export class PlanController {
 
   static async editPlan(title, description, id) {
     try {
-      await con.query('UPDATE "plans" SET  title = $1,description =$2::json   WHERE id = $3 ',
+      await con.query('UPDATE "plans" SET  title = $1,description =$2  WHERE id = $3 ',
         [title, JSON.stringify(description), id]);
     } catch (e) {
       throw new Error(e);

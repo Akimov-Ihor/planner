@@ -25,10 +25,11 @@ plansRouter.post('/plan/:id', authenticateToken, async (req, res) => {
     const {
       // eslint-disable-next-line camelcase
       title, description, id,
-    } = req.body.body;
+    } = req.body;
     await PlanController.editPlan(title, description, id);
     res.status(200).send({ message: 'Edit Success ' });
   } catch (err) {
+    console.log(err);
     res.status(500).send('Something broke!');
   }
 });

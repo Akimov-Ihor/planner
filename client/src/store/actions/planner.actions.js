@@ -179,12 +179,9 @@ export const filterPlan = ({ id, userId }) => async (dispatch) => {
 export const editPlan = ({
   title, description, id, userId,
 }) => async (dispatch) => {
-  await axiosService.post(`/plan/${id}`, {
-    headers:
-        { Authorization: `Bearer ${localStorage.getItem('token')}` },
-    body: { title, description: description.map((elem) => JSON.stringify(elem)), id },
-
-  });
+  await axiosService.post(`/plan/${id}`,
+    { title, description: description.map((elem) => JSON.stringify(elem)), id },
+    { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
   toast.warn(' 📝 ️CHANGE PLAN', {
     position: 'top-right',
     autoClose: 5000,
