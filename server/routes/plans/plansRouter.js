@@ -19,19 +19,14 @@ plansRouter.post('/plans/', authenticateToken, async (req, res) => {
     res.status(500).send('Something broke!');
   }
 });
+
 plansRouter.post('/plan/:id', authenticateToken, async (req, res) => {
   try {
-    // const body = JSON.parse(req.body.body);
-
     const {
       // eslint-disable-next-line camelcase
       title, description, id,
     } = req.body.body;
-    await PlanController.editPlan(
-
-      title, description, id,
-
-    );
+    await PlanController.editPlan(title, description, id);
     res.status(200).send({ message: 'Edit Success ' });
   } catch (err) {
     res.status(500).send('Something broke!');

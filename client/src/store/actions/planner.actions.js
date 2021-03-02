@@ -135,7 +135,7 @@ export const setPlan = ({
   try {
     const plan = {
       title,
-      description,
+      description: description.map((elem) => JSON.stringify(elem)),
       date: getMonthDayYear(selectDate).toString(),
       id: generateRandomId(),
       user_id: userId,
@@ -179,16 +179,13 @@ export const filterPlan = ({ id, userId }) => async (dispatch) => {
 export const editPlan = ({
   title, description, id, userId,
 }) => async (dispatch) => {
-  // const body = {
-  //   title, description: description.value, id, userId,
-  // };
   await axiosService.post(`/plan/${id}`, {
     headers:
         { Authorization: `Bearer ${localStorage.getItem('token')}` },
     body: { title, description: description.map((elem) => JSON.stringify(elem)), id },
 
   });
-  toast.warn('🗑 PLAN EDIT', {
+  toast.warn(' 📝 ️CHANGE PLAN', {
     position: 'top-right',
     autoClose: 5000,
     hideProgressBar: false,

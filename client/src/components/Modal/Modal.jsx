@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
-  Input, TextArea, Form, Button, Icon,
+  Input, Form, Button, Icon,
 } from 'semantic-ui-react';
 
+import { TextEditor } from '../TextEditor/TextEditor.jsx';
 import { setPlan } from '../../store/actions/planner.actions';
 import { constants } from '../../constants/text.constants';
 
@@ -13,7 +14,7 @@ export const Modal = ({
   isOpen, setIsOpen, selectDate, userId,
 }) => {
   const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState([{ children: [{ text: '' }] }]);
 
   const dispatch = useDispatch();
   const openCloseModal = () => setIsOpen(!isOpen);
@@ -22,8 +23,6 @@ export const Modal = ({
     await setPlan({
       title, description, selectDate, userId,
     })(dispatch);
-    setTitle('');
-    setDescription('');
     return openCloseModal();
   };
 
@@ -51,11 +50,7 @@ export const Modal = ({
                   </Button>
                 </div>
                 <div className="modal-textarea">
-                  <TextArea
-                    placeholder="Tell us more"
-                    onChange={(e) => setDescription(() => e.target.value)}
-                    value={description}
-                  />
+                  <TextEditor value={description} setValue={setDescription} />
                 </div>
                 <div className="modal-button">
                   <Button

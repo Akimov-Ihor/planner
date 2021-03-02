@@ -29,6 +29,13 @@ export const constants = {
     close: 'Close',
     add: 'Add',
   },
+  showPlan: {
+    title: 'Title:',
+    description: 'Description:',
+    close: 'Close',
+    delete: 'Delete',
+
+  },
   monthsFull: [
     'January',
     'February',

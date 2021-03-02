@@ -13,19 +13,22 @@
 
 .modal-container > div {
   display: flex;
-  justify-content: center;
+  /*justify-content: center;*/
   flex-direction: column;
-  height: 22%;
-  width: 35%;
+  height: 35%;
+  width: 48%;
   padding: 0 .5%;
   background: #020202ab;
   color: #e8f0fe;
 }
-
+.modal-container  div> form {
+  height: 100%;
+}
 .modal-title-close{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 3% 0;
 }
 
 .modal-title-close div {
@@ -41,9 +44,17 @@
   margin-top: 12px;
   padding: 0.5px;
   margin-bottom: 0px;
-  height: 100px;
-  max-height: 141px;
-  min-height: 100px
+  height: 65%;
+  overflow-y: auto;
+}
+.modal-textarea div {
+  padding: 0 4%;
+  text-overflow: ellipsis;
+}
+.modal-textarea > .editorButtonWrapper {
+  padding: 0 4%;
+  position: sticky;
+  top: 0;
 }
 
 @media (max-width: 800px) {
