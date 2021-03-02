@@ -29,7 +29,6 @@ plansRouter.post('/plan/:id', authenticateToken, async (req, res) => {
     await PlanController.editPlan(title, description, id);
     res.status(200).send({ message: 'Edit Success ' });
   } catch (err) {
-    console.log(err);
     res.status(500).send('Something broke!');
   }
 });

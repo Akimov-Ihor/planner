@@ -1,8 +1,11 @@
 import React from 'react';
 import './PlannCard.css';
 
-export const PlannCard = ({ title, openPlans, obj }) => {
+export const PlannCard = ({
+  title, openPlans, obj,
+}) => {
   return (
+
     <div
       className="plann-card-wrapper"
       onClick={(event) => {
@@ -12,5 +15,6 @@ export const PlannCard = ({ title, openPlans, obj }) => {
     >
       {title}
     </div>
+
   );
 };

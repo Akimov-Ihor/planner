@@ -1,5 +1,8 @@
-import React, { useEffect } from 'react';
+/* eslint-disable */
+
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Draggable from 'react-draggable';
 
 import { PlannCard } from '../../../PlannCard/PlannCard.jsx';
 
@@ -57,56 +60,71 @@ export const CalendarDateIndicator = ({
 
   const changeActiveDate = (date) => (activeDay(date) ? changeDate(date.toString()) : false);
 
+
   return (
-    <div className="calendar-date">
+
+    <div className="calendar-date"  >
+
       {
-      datesInMonth.map((i, key) => {
-        return (
-          <div
-            key={`${key + i.date + i.currentMonth}`}
-            style={{ cursor: activeDayCursor(i.date) }}
-            onClick={() => changeActiveDate(i.date)}
-            className={
-              `calendar-date-indicator 
-              ${isCurrentMonth} 
-              ${isChosen(i)} 
-              ${isActiveDay(i.date)} `
-            }
-          >
-            <div
-              className="calendar-date-indicator-current"
-              data-active-month={i.currentMonth}
-              data-date={i.date}
-              key={key}
-            >
-              {getDayOfMonth(i.date)}
-            </div>
-            <div
-              className="calendar-date-indicator-plans"
-              key={`${key + i.date} `}
-            >
-              {
-                modalDate.length
-                  ? modalDate.map((obj, idx) => {
-                    return (
-                      compareDate(obj, i)
-                        ? (
-                          <PlannCard
-                            openPlans={openPlan}
-                            obj={obj}
-                            key={idx}
-                            title={obj.title}
-                            description={obj.description}
-                          />
-                        ) : null
-                    );
-                  }) : null
-              }
-            </div>
-          </div>
-        );
-      })
-    }
+            datesInMonth.map((i, key) => {
+              return (
+
+                <div
+                  data-date={i.date}
+                  key={`${key + i.date + i.currentMonth}`}
+                  style={{ cursor: activeDayCursor(i.date) }}
+                  onContextMenu={() => changeActiveDate(i.date)}
+                  className={
+                        `calendar-date-indicator 
+                 ${isCurrentMonth} 
+                 ${isChosen(i)} 
+                 ${isActiveDay(i.date)} `
+                      }
+                >
+
+                  <div
+                    className="calendar-date-indicator-current"
+                    data-active-month={i.currentMonth}
+                    data-date={i.date}
+                    id={key}
+                    key={key}
+
+                  >
+                    {getDayOfMonth(i.date)}
+                  </div>
+                  <div
+                    className="calendar-date-indicator-plans"
+                    key={`${key + i.date} `}
+
+                  >
+                    {
+                        modalDate.length
+                          ? modalDate.map((obj, idx) => {
+                            return (
+                              compareDate(obj, i)
+                                ? (
+
+                                  <PlannCard
+                                    openPlans={openPlan}
+                                    obj={obj}
+                                    key={idx}
+                                    title={obj.title}
+                                    description={obj.description}
+                                  />
+
+                                ) : null
+                            );
+                          }) : null
+                      }
+
+                  </div>
+                </div>
+
+              );
+            })
+          }
+
     </div>
+
   );
 };

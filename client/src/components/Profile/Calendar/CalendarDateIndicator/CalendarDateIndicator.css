@@ -17,7 +17,7 @@
 .calendar-date-indicator-plans {
   cursor: default;
   width: 73%;
-  overflow: auto;
+  /*overflow: auto;*/
 }
 .calendar-date-indicator-plans div{
   cursor: pointer;
